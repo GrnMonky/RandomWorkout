@@ -59,7 +59,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3b-2I-zhG">
-                                <rect key="frame" x="372" y="478" width="290" height="122"/>
+                                <rect key="frame" x="354" y="463" width="290" height="122"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="j3b-2I-zhG" secondAttribute="height" multiplier="4:3" id="BYz-VB-Ffc"/>
                                     <constraint firstAttribute="width" secondItem="j3b-2I-zhG" secondAttribute="height" multiplier="13:3" id="Mna-dr-q16"/>
