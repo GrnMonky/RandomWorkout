@@ -15,6 +15,7 @@
 		4ABE67CA1A520A16000024ED /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE67C81A520A16000024ED /* LaunchScreen.xib */; };
 		4ABE67D61A520A16000024ED /* RandomWorkoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67D51A520A16000024ED /* RandomWorkoutTests.swift */; };
 		4ABE67E11A520D6F000024ED /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67E01A520D6F000024ED /* Move.swift */; };
+		4ABE67E31A5227D3000024ED /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		4ABE67D41A520A16000024ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ABE67D51A520A16000024ED /* RandomWorkoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomWorkoutTests.swift; sourceTree = "<group>"; };
 		4ABE67E01A520D6F000024ED /* Move.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
+		4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				4ABE67C61A520A16000024ED /* Images.xcassets */,
 				4ABE67C81A520A16000024ED /* LaunchScreen.xib */,
 				4ABE67BB1A520A16000024ED /* Supporting Files */,
+				4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */,
 			);
 			path = RandomWorkout;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			files = (
 				4ABE67E11A520D6F000024ED /* Move.swift in Sources */,
 				4ABE67C21A520A16000024ED /* SecondViewController.swift in Sources */,
+				4ABE67E31A5227D3000024ED /* WorkoutViewController.swift in Sources */,
 				4ABE67BE1A520A16000024ED /* AppDelegate.swift in Sources */,
 				4ABE67C01A520A16000024ED /* FirstViewController.swift in Sources */,
 			);

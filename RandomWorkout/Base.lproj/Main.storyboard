@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--First-->
@@ -29,7 +30,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Mhr-lZ-pNJ" kind="show" id="lTg-q0-5XY"/>
+                                    <segue destination="GK2-Ts-gsX" kind="presentation" id="sDE-MK-Zad"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -45,31 +46,44 @@
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="2bk-tE-AxQ">
+        <!--Workout View Controller-->
+        <scene sceneID="0o8-Q1-Vtd">
             <objects>
-                <viewController id="Mhr-lZ-pNJ" sceneMemberID="viewController">
+                <viewController id="GK2-Ts-gsX" customClass="WorkoutViewController" customModule="RandomWorkout" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4FL-Nj-HhG"/>
-                        <viewControllerLayoutGuide type="bottom" id="y7J-rh-z32"/>
+                        <viewControllerLayoutGuide type="top" id="CYZ-zh-aXa"/>
+                        <viewControllerLayoutGuide type="bottom" id="b3o-Dr-XD6"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7bp-Zz-YlF">
+                    <view key="view" contentMode="scaleToFill" id="TUU-yE-6vW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umm-Zc-1UD">
-                                <rect key="frame" x="235" y="40" width="131" height="30"/>
-                                <state key="normal" title="Quit">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3b-2I-zhG">
+                                <rect key="frame" x="372" y="478" width="290" height="122"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="j3b-2I-zhG" secondAttribute="height" multiplier="4:3" id="BYz-VB-Ffc"/>
+                                    <constraint firstAttribute="width" secondItem="j3b-2I-zhG" secondAttribute="height" multiplier="13:3" id="Mna-dr-q16"/>
+                                </constraints>
+                                <state key="normal" title="Exit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="BYz-VB-Ffc"/>
+                                        <exclude reference="Mna-dr-q16"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="DoneAction:" destination="GK2-Ts-gsX" eventType="touchUpInside" id="rwL-Wh-zN5"/>
+                                </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BMS-iN-cJF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vTE-C9-Vlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1467" y="-320"/>
+            <point key="canvasLocation" x="1372" y="-319"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
@@ -83,7 +97,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="Moves" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5" propertyAccessControl="none">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Moves" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5" propertyAccessControl="none">
                                 <rect key="frame" x="247" y="0.0" width="107" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
@@ -96,10 +110,6 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
                 </viewController>
