@@ -8,13 +8,13 @@
 
 import Foundation
 
-class Move {
+struct Move {
     
     var Name:String = ""
     var Time:Int = 45
     var Tags:[String] = [String]()
     
-    class func GenerateMoves() -> [Move]{
+    static func GenerateMoves() -> [Move]{
     
         var moves:[Move] = [Move]()
         
