@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AABB7CC1A68B84A00D60A35 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */; };
 		4ABE67BE1A520A16000024ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67BD1A520A16000024ED /* AppDelegate.swift */; };
 		4ABE67C01A520A16000024ED /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67BF1A520A16000024ED /* FirstViewController.swift */; };
 		4ABE67C21A520A16000024ED /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67C11A520A16000024ED /* SecondViewController.swift */; };
@@ -16,6 +17,10 @@
 		4ABE67D61A520A16000024ED /* RandomWorkoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67D51A520A16000024ED /* RandomWorkoutTests.swift */; };
 		4ABE67E11A520D6F000024ED /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67E01A520D6F000024ED /* Move.swift */; };
 		4ABE67E31A5227D3000024ED /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */; };
+		4ABE67E51A538E8F000024ED /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67E41A538E8F000024ED /* Helpers.swift */; };
+		4ABE67E91A54B0A2000024ED /* MoveCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67E81A54B0A2000024ED /* MoveCreator.swift */; };
+		4ABE67EC1A54CEAD000024ED /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE67EB1A54CEAD000024ED /* beep.wav */; };
+		4ABE67ED1A54D30D000024ED /* beep.wav in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67EB1A54CEAD000024ED /* beep.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4ABE67B81A520A16000024ED /* RandomWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABE67BC1A520A16000024ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ABE67BD1A520A16000024ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +48,9 @@
 		4ABE67D51A520A16000024ED /* RandomWorkoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomWorkoutTests.swift; sourceTree = "<group>"; };
 		4ABE67E01A520D6F000024ED /* Move.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
 		4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
+		4ABE67E41A538E8F000024ED /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		4ABE67E81A54B0A2000024ED /* MoveCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveCreator.swift; sourceTree = "<group>"; };
+		4ABE67EB1A54CEAD000024ED /* beep.wav */ = {isa = PBXFileReference; explicitFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AABB7CC1A68B84A00D60A35 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +75,7 @@
 		4ABE67AF1A520A16000024ED = {
 			isa = PBXGroup;
 			children = (
+				4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */,
 				4ABE67BA1A520A16000024ED /* RandomWorkout */,
 				4ABE67D21A520A16000024ED /* RandomWorkoutTests */,
 				4ABE67B91A520A16000024ED /* Products */,
@@ -83,6 +94,7 @@
 		4ABE67BA1A520A16000024ED /* RandomWorkout */ = {
 			isa = PBXGroup;
 			children = (
+				4ABE67EA1A54CB29000024ED /* Assets */,
 				4ABE67DF1A520D36000024ED /* MoveClasses */,
 				4ABE67BD1A520A16000024ED /* AppDelegate.swift */,
 				4ABE67BF1A520A16000024ED /* FirstViewController.swift */,
@@ -92,6 +104,7 @@
 				4ABE67C81A520A16000024ED /* LaunchScreen.xib */,
 				4ABE67BB1A520A16000024ED /* Supporting Files */,
 				4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */,
+				4ABE67E41A538E8F000024ED /* Helpers.swift */,
 			);
 			path = RandomWorkout;
 			sourceTree = "<group>";
@@ -125,8 +138,17 @@
 			isa = PBXGroup;
 			children = (
 				4ABE67E01A520D6F000024ED /* Move.swift */,
+				4ABE67E81A54B0A2000024ED /* MoveCreator.swift */,
 			);
 			name = MoveClasses;
+			sourceTree = "<group>";
+		};
+		4ABE67EA1A54CB29000024ED /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4ABE67EB1A54CEAD000024ED /* beep.wav */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +234,7 @@
 				4ABE67C51A520A16000024ED /* Main.storyboard in Resources */,
 				4ABE67CA1A520A16000024ED /* LaunchScreen.xib in Resources */,
 				4ABE67C71A520A16000024ED /* Images.xcassets in Resources */,
+				4ABE67EC1A54CEAD000024ED /* beep.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,10 +253,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ABE67E11A520D6F000024ED /* Move.swift in Sources */,
+				4ABE67E51A538E8F000024ED /* Helpers.swift in Sources */,
 				4ABE67C21A520A16000024ED /* SecondViewController.swift in Sources */,
 				4ABE67E31A5227D3000024ED /* WorkoutViewController.swift in Sources */,
 				4ABE67BE1A520A16000024ED /* AppDelegate.swift in Sources */,
 				4ABE67C01A520A16000024ED /* FirstViewController.swift in Sources */,
+				4ABE67ED1A54D30D000024ED /* beep.wav in Sources */,
+				4ABE67E91A54B0A2000024ED /* MoveCreator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +453,7 @@
 				4ABE67DB1A520A16000024ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4ABE67DC1A520A16000024ED /* Build configuration list for PBXNativeTarget "RandomWorkoutTests" */ = {
 			isa = XCConfigurationList;
@@ -435,6 +462,7 @@
 				4ABE67DE1A520A16000024ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
