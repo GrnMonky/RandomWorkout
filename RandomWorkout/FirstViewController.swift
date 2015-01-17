@@ -18,6 +18,8 @@ class FirstViewController: UIViewController {
         
         EndTimeLbl.text = (Int)((StopTimePicker.date.timeIntervalSinceDate(NSDate())/60)).description + " mins"
         
+        UseEndTimeSwitch.on = false
+        
         self.UpdateTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("Update"), userInfo: nil, repeats: true)
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -35,18 +37,32 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var StopTimePicker: UIDatePicker!
     @IBOutlet weak var EndTimeLbl: UILabel!
     
-    var Time:Int = 5
+    
+    @IBAction func InfiniteSwitched(sender: UISwitch) {
+        StopTimePicker.enabled = !sender.on
+        if(sender.on)
+        {
+            EndTimeLbl.text = "Infinite"
+        }
+        else
+        {
+            EndTimeLbl.text = (Int)((StopTimePicker.date.timeIntervalSinceDate(NSDate())/60)).description + " mins"
+        }
+    }
     
     @IBAction func TimeIncremented(sender: UIStepper) {
         
-        Time = Int(sender.value)
         EndTimeLbl.text = (Int)((StopTimePicker.date.timeIntervalSinceDate(NSDate())/60)).description + " mins"
     }
     
     func Update()
     {
         StopTimePicker.minimumDate = NSDate(timeIntervalSinceNow: 120)
+        
+        if(!UseEndTimeSwitch.on)
+        {
         EndTimeLbl.text = (Int)((StopTimePicker.date.timeIntervalSinceDate(NSDate())/60)).description + " mins"
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -54,6 +70,7 @@ class FirstViewController: UIViewController {
         var WorkoutView = segue.destinationViewController as WorkoutViewController
         
         WorkoutView.EndTime = StopTimePicker.date
+        WorkoutView.Infinite = UseEndTimeSwitch.on
     }
     
     

@@ -73,6 +73,7 @@ class WorkoutViewController: UIViewController {
     var myUtterance = AVSpeechUtterance(string: "")
     
     var EndTime:NSDate = NSDate()
+    var Infinite = false
     var Moves = Move.GenerateMoves()
     
     override func didReceiveMemoryWarning() {
@@ -89,10 +90,13 @@ class WorkoutViewController: UIViewController {
             UpdateState()
         }
         
+        if(!Infinite)
+        {
         let result = NSDate().compare(EndTime)
         if(result == NSComparisonResult.OrderedDescending || result ==  NSComparisonResult.OrderedSame){
             
             Done()
+        }
         }
     }
     
