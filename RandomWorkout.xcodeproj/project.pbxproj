@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A45FEDC1A6B53FB00C5DFDF /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45FEDB1A6B53FB00C5DFDF /* SecondViewController.swift */; };
 		4AABB7CC1A68B84A00D60A35 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */; };
 		4ABE67BE1A520A16000024ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67BD1A520A16000024ED /* AppDelegate.swift */; };
 		4ABE67C01A520A16000024ED /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67BF1A520A16000024ED /* FirstViewController.swift */; };
-		4ABE67C21A520A16000024ED /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67C11A520A16000024ED /* SecondViewController.swift */; };
 		4ABE67C51A520A16000024ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE67C31A520A16000024ED /* Main.storyboard */; };
 		4ABE67C71A520A16000024ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE67C61A520A16000024ED /* Images.xcassets */; };
 		4ABE67CA1A520A16000024ED /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE67C81A520A16000024ED /* LaunchScreen.xib */; };
@@ -34,12 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A45FEDB1A6B53FB00C5DFDF /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4ABE67B81A520A16000024ED /* RandomWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABE67BC1A520A16000024ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ABE67BD1A520A16000024ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4ABE67BF1A520A16000024ED /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		4ABE67C11A520A16000024ED /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		4ABE67C41A520A16000024ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4ABE67C61A520A16000024ED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4ABE67C91A520A16000024ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -94,11 +94,11 @@
 		4ABE67BA1A520A16000024ED /* RandomWorkout */ = {
 			isa = PBXGroup;
 			children = (
+				4A45FEDB1A6B53FB00C5DFDF /* SecondViewController.swift */,
 				4ABE67EA1A54CB29000024ED /* Assets */,
 				4ABE67DF1A520D36000024ED /* MoveClasses */,
 				4ABE67BD1A520A16000024ED /* AppDelegate.swift */,
 				4ABE67BF1A520A16000024ED /* FirstViewController.swift */,
-				4ABE67C11A520A16000024ED /* SecondViewController.swift */,
 				4ABE67C31A520A16000024ED /* Main.storyboard */,
 				4ABE67C61A520A16000024ED /* Images.xcassets */,
 				4ABE67C81A520A16000024ED /* LaunchScreen.xib */,
@@ -252,9 +252,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A45FEDC1A6B53FB00C5DFDF /* SecondViewController.swift in Sources */,
 				4ABE67E11A520D6F000024ED /* Move.swift in Sources */,
 				4ABE67E51A538E8F000024ED /* Helpers.swift in Sources */,
-				4ABE67C21A520A16000024ED /* SecondViewController.swift in Sources */,
 				4ABE67E31A5227D3000024ED /* WorkoutViewController.swift in Sources */,
 				4ABE67BE1A520A16000024ED /* AppDelegate.swift in Sources */,
 				4ABE67C01A520A16000024ED /* FirstViewController.swift in Sources */,

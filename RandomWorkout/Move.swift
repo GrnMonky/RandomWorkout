@@ -32,13 +32,28 @@ class Move {
             Move(name: "Burpees"),
             Move(name: "Squats"),
             Move(name: "Bicep Curls"),
-            Move(name: "Push-Ups"),
-            Move(name: "Lunges"),
+            Move(name: "Walking Push-Ups"),
+            Move(name: "Lunge kick"),
             Move(name: "Side Planks with Leg Raises"),
             Move(name: "Mountain Climbers"),
-            Move(name: "Jabs")
-            
-            
+            Move(name: "Jabs"),
+            Move(name: "lunges"),
+            Move(name: "Push-Up"),
+            Move(name: "Plank Knee Tuck"),
+            Move(name: "Shuffle"),
+            Move(name: "Kicks"),
+            Move(name: "In and Out abs plank"),
+            Move(name: "Twist Knee Up"),
+            Move(name: "Tricep dips"),
+            Move(name: "Monkey Press"),
+            Move(name: "Uppercuts"),
+            Move(name: "Mason Twists"),
+            Move(name: "C sit abs"),
+            Move(name: "Dumbbell swings"),
+            Move(name: "Tricep Kickback"),
+            Move(name: "Bent over rows"),
+            Move(name: "Sun Salutation"),
+            Move(name: "bicycle kicks")
         ]
     }
     

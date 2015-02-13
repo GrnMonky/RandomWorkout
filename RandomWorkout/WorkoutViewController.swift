@@ -76,6 +76,8 @@ class WorkoutViewController: UIViewController {
     var Infinite = false
     var Moves = Move.GenerateMoves()
     
+    var halfway = false;
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -86,6 +88,12 @@ class WorkoutViewController: UIViewController {
         TotalTime =  TotalTime + 0.01
         MoveTimeLbl.text = Helpers.ConvertFloatToTimeMilli(MoveTime)
         MoveTime = MoveTime - 0.01
+        
+        if(Float(MoveTime) <= Float(CurrentMove.Time/2) && State == WorkoutState.InMove && halfway == false)
+        {
+            halfway = true
+            audioPlayer.play()
+        }
         if(MoveTime <= 0){
             UpdateState()
         }
@@ -119,6 +127,7 @@ class WorkoutViewController: UIViewController {
             State = WorkoutState.Preping
             break
         case .Preping:
+            halfway = false
             CurrentMove = NextMove
             MoveTime = Float(NextMove.Time)
             NextMove = ChooseNextMove()
