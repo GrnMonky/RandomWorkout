@@ -11,7 +11,7 @@ import Foundation
 class Move {
     
     var Name:String = ""
-    var Time:Int = 45
+    var Time:Int = 30
     var Weight:Int = 0
     var Tags:[String] = [String]()
     var Removed = false
@@ -23,6 +23,8 @@ class Move {
     init(){
     }
     
+    
+    //Generates Moves
     class func GenerateMoves() -> [Move]{
     
         var moves:[Move] = [Move]()
@@ -37,7 +39,7 @@ class Move {
             Move(name: "Side Planks with Leg Raises"),
             Move(name: "Mountain Climbers"),
             Move(name: "Jabs"),
-            Move(name: "lunges"),
+            Move(name: "Lunges"),
             Move(name: "Push-Up"),
             Move(name: "Plank Knee Tuck"),
             Move(name: "Shuffle"),
@@ -53,7 +55,33 @@ class Move {
             Move(name: "Tricep Kickback"),
             Move(name: "Bent over rows"),
             Move(name: "Sun Salutation"),
-            Move(name: "bicycle kicks")
+            Move(name: "Bicycle kicks"),
+            Move(name: "Superman"),
+            Move(name: "Scissor kicks"),
+            Move(name: "Shoulder push-ups"),
+            Move(name: "Dive bomber push-ups"),
+            Move(name: "Warrior"),
+            Move(name: "Half moon"),
+            Move(name: "Ab Tucks"),
+            Move(name: "Jack push-up"),
+            Move(name: "Spider-Man pushup"),
+            Move(name: "Side plank hip dips"),
+            Move(name: "Hip-hop Kicks"),
+            Move(name: "Squatting shuffle"),
+            Move(name: "Staggered pushup"),
+            Move(name: "Calf raises"),
+            Move(name: "Side kicks"),
+            Move(name: "Tricep ball push-ups"),
+            Move(name: "Twisting half moon"),
+            Move(name: "Power knee"),
+            Move(name: "Swimmer"),
+            Move(name: "Skaters"),
+            Move(name: "Tricep curls"),
+            Move(name: "Military march"),
+            Move(name: "Up and over knee"),
+            Move(name: "Twisting Warrior"),
+            Move(name: "Chair"),
+            Move(name: "In and out knee")
         ]
     }
     
