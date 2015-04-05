@@ -29,6 +29,8 @@ class WorkoutViewController: UIViewController {
         
         self.SecondsTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("beep"), userInfo: nil, repeats: true)
         
+        self.FiveMinuteTimer = NSTimer.scheduledTimerWithTimeInterval(60 * 5, target: self, selector: Selector("sayTime"), userInfo: nil, repeats: true)
+        
         let dummyMove = Move()
         dummyMove.Time = 0
         dummyMove.Weight = 0
@@ -65,6 +67,7 @@ class WorkoutViewController: UIViewController {
     var NextMove:Move = Move()
     var TotalTimer = NSTimer()
     var SecondsTimer = NSTimer()
+    var FiveMinuteTimer = NSTimer()
     var TotalTime:Float = 0
     var MoveTime:Float = 0
     var State:WorkoutState = WorkoutState.InMove
@@ -103,6 +106,7 @@ class WorkoutViewController: UIViewController {
         let result = NSDate().compare(EndTime)
         if(result == NSComparisonResult.OrderedDescending || result ==  NSComparisonResult.OrderedSame){
             
+            Speak("Workout Completed")
             Done()
         }
         }
@@ -115,6 +119,12 @@ class WorkoutViewController: UIViewController {
             //Helpers.PlaySound(beepSound!)
             audioPlayer.play()
         }
+    }
+    
+    var FiveMinutes = 0
+    func sayTime(){
+        FiveMinutes += 5
+        Speak("\(FiveMinutes) minutes")
     }
     
     func UpdateState(){
@@ -146,13 +156,21 @@ class WorkoutViewController: UIViewController {
     {
         TotalTimer.invalidate()
         SecondsTimer.invalidate()
+        FiveMinuteTimer.invalidate()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func SpeakMove(MoveToSpeak:Move)
     {
         myUtterance = AVSpeechUtterance(string: MoveToSpeak.Name)
-        myUtterance.rate = 0.3
+        myUtterance.rate = 0.2
+        synth.speakUtterance(myUtterance)
+    }
+    
+    func Speak(string:String)
+    {
+        myUtterance = AVSpeechUtterance(string: string)
+        myUtterance.rate = 0.2
         synth.speakUtterance(myUtterance)
     }
     

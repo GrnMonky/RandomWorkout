@@ -81,7 +81,13 @@ class Move {
             Move(name: "Up and over knee"),
             Move(name: "Twisting Warrior"),
             Move(name: "Chair"),
-            Move(name: "In and out knee")
+            Move(name: "In and out knee"),
+            Move(name: "Shoulder flys"),
+            Move(name: "Bent over flys"),
+            Move(name: "Ski abs"),
+            Move(name: "Hammer curls"),
+            Move(name: "Alphabet abs"),
+            Move(name: "Side plank dance kick")
         ]
     }
     
