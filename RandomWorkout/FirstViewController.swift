@@ -67,7 +67,7 @@ class FirstViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        var WorkoutView = segue.destinationViewController as WorkoutViewController
+        var WorkoutView = segue.destinationViewController as! WorkoutViewController
         
         WorkoutView.EndTime = StopTimePicker.date
         WorkoutView.Infinite = UseEndTimeSwitch.on

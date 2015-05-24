@@ -87,7 +87,9 @@ class Move {
             Move(name: "Ski abs"),
             Move(name: "Hammer curls"),
             Move(name: "Alphabet abs"),
-            Move(name: "Side plank dance kick")
+            Move(name: "Side plank dance kick"),
+            Move(name: "Scarecrow press"),
+            Move(name: "Marching bridge")
         ]
     }
     
