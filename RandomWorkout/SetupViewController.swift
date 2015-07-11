@@ -8,7 +8,11 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+
+var EndTime:NSDate = NSDate()
+var Infinite = false
+
+class SetupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,10 +71,10 @@ class FirstViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        var WorkoutView = segue.destinationViewController as! WorkoutViewController
+        //var WorkoutView = segue.destinationViewController as! WorkoutViewController
         
-        WorkoutView.EndTime = StopTimePicker.date
-        WorkoutView.Infinite = UseEndTimeSwitch.on
+        EndTime = StopTimePicker.date
+        Infinite = UseEndTimeSwitch.on
     }
     
     

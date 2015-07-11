@@ -75,9 +75,7 @@ class WorkoutViewController: UIViewController {
     let synth = AVSpeechSynthesizer()
     var myUtterance = AVSpeechUtterance(string: "")
     
-    var EndTime:NSDate = NSDate()
-    var Infinite = false
-    var Moves = Move.GenerateMoves()
+    
     
     var halfway = false;
     

@@ -8,6 +8,8 @@
 
 import Foundation
 
+var Moves = Move.GenerateMoves();
+
 class Move {
     
     var Name:String = ""
