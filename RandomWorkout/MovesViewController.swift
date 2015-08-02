@@ -27,7 +27,9 @@ UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.setLeftBarButtonItem(editButtonItem(), animated: false)
+        //navigationItem.setLeftBarButtonItem(editButtonItem(), animated: false)
+        
+        //navigationItem.setRightBarButtonItem(, animated: true)
         
         
         //tableView = UITableView(frame: view., style: .Plain)
@@ -48,6 +50,14 @@ UITableViewDataSource, UITableViewDelegate {
             
             view.addSubview(theTableView)
         }*/
+        
+        tableView.reloadData()
+        
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
     }
     
     func tableView(tableView: UITableView,
@@ -79,6 +89,7 @@ UITableViewDataSource, UITableViewDelegate {
         super.setEditing(editing, animated: animated)
         tableView!.setEditing(editing, animated: animated)
     }
+
     
     func tableView(tableView: UITableView,
         commitEditingStyle editingStyle: UITableViewCellEditingStyle,
@@ -87,9 +98,34 @@ UITableViewDataSource, UITableViewDelegate {
             if editingStyle == .Delete{
                 /* First remove this object from the source */
                 Moves.removeAtIndex(indexPath.row)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
+               tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
             }
             
+    }
+    
+    func tableView(tableView: UITableView,
+        didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        var controller = self.storyboard?.instantiateViewControllerWithIdentifier("EditMoveViewController") as! EditMoveViewController
+        controller.Index = indexPath.row
+        self.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+        // Cover Vertical is necessary for CurrentContext
+        self.modalPresentationStyle = .CurrentContext
+        
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        
+        var EditView = segue.destinationViewController as! EditMoveViewController
+        
+    
+        var newMove = Move()
+        EditView.Index = -1
+        tableView.reloadData()
     }
     
 }

@@ -8,7 +8,27 @@
 
 import Foundation
 
-var Moves = Move.GenerateMoves();
+/*var Moves : [Move] {
+    get{
+        return MovesHolder().Moves
+    }
+}
+
+class MovesHolder{
+    
+    let Moves : [Move]
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(Moves, forKey: "Moves")
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        Moves = aDecoder.decodeObjectForKey("Moves") as! [Move]
+    }
+}*/
+
+var Moves = Move.GenerateMoves()
+
 
 class Move {
     
@@ -23,11 +43,13 @@ class Move {
     }
     
     init(){
+        Name = "new Move";
     }
-    
     
     //Generates Moves
     class func GenerateMoves() -> [Move]{
+        
+        
     
         var moves:[Move] = [Move]()
         
