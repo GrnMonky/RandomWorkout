@@ -245,9 +245,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Mfw-3R-11a">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="d1x-Fb-hOB">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="d1x-Fb-hOB">
                             <connections>
                                 <action selector="DoneAction:" destination="GK2-Ts-gsX" id="c3w-1B-lD0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Skip" id="pXU-AV-8b9">
+                            <connections>
+                                <action selector="Skip:" destination="GK2-Ts-gsX" id="Ix8-hn-iYS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

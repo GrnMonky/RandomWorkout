@@ -145,6 +145,11 @@ class WorkoutViewController: UIViewController {
         }
     }
     
+    @IBAction func Skip(sender: AnyObject)
+    {
+        UpdateState()
+    }
+    
     @IBAction func DoneAction(sender: AnyObject){
         
         Done()
