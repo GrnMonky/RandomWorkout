@@ -302,6 +302,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="rB2-kg-1hh">
+                        <barButtonItem key="leftBarButtonItem" title="Clear All" id="fiM-wH-OH8">
+                            <connections>
+                                <action selector="showAlertTapped:" destination="8rJ-Kc-sve" id="33v-XK-205"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="RNk-fw-5Fh">
                             <connections>
                                 <segue destination="Fya-7H-nNA" kind="presentation" id="mkV-IR-u0H"/>
@@ -333,7 +338,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aIu-pC-UVJ">
                                 <rect key="frame" x="70" y="81" width="495" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCj-K8-x5V">
                                 <rect key="frame" x="16" y="182" width="38" height="21"/>

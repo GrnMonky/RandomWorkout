@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A35B81A1B72FF2000D4AB28 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A35B8191B72FF2000D4AB28 /* Extensions.swift */; };
+		4A35B81C1B73150C00D4AB28 /* EditMoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A35B81B1B73150C00D4AB28 /* EditMoveViewController.swift */; };
 		4A45FEDC1A6B53FB00C5DFDF /* MovesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45FEDB1A6B53FB00C5DFDF /* MovesViewController.swift */; };
-		4A9699291B52F6D900E968F5 /* EditMoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9699281B52F6D900E968F5 /* EditMoveViewController.swift */; };
 		4AABB7CC1A68B84A00D60A35 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */; };
 		4ABE67BE1A520A16000024ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67BD1A520A16000024ED /* AppDelegate.swift */; };
 		4ABE67C01A520A16000024ED /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67BF1A520A16000024ED /* SetupViewController.swift */; };
@@ -34,8 +35,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A35B8191B72FF2000D4AB28 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4A35B81B1B73150C00D4AB28 /* EditMoveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditMoveViewController.swift; path = ../../../.Trash/EditMoveViewController.swift; sourceTree = "<group>"; };
 		4A45FEDB1A6B53FB00C5DFDF /* MovesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovesViewController.swift; sourceTree = "<group>"; };
-		4A9699281B52F6D900E968F5 /* EditMoveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMoveViewController.swift; sourceTree = "<group>"; };
 		4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4ABE67B81A520A16000024ED /* RandomWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABE67BC1A520A16000024ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,10 +77,10 @@
 		4A1E88C31B3738A8009D18B1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				4A35B81B1B73150C00D4AB28 /* EditMoveViewController.swift */,
 				4ABE67BF1A520A16000024ED /* SetupViewController.swift */,
 				4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */,
 				4A45FEDB1A6B53FB00C5DFDF /* MovesViewController.swift */,
-				4A9699281B52F6D900E968F5 /* EditMoveViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -114,6 +116,7 @@
 				4ABE67C81A520A16000024ED /* LaunchScreen.xib */,
 				4ABE67BB1A520A16000024ED /* Supporting Files */,
 				4ABE67E41A538E8F000024ED /* Helpers.swift */,
+				4A35B8191B72FF2000D4AB28 /* Extensions.swift */,
 			);
 			path = RandomWorkout;
 			sourceTree = "<group>";
@@ -262,10 +265,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A45FEDC1A6B53FB00C5DFDF /* MovesViewController.swift in Sources */,
+				4A35B81A1B72FF2000D4AB28 /* Extensions.swift in Sources */,
 				4ABE67E11A520D6F000024ED /* Move.swift in Sources */,
 				4ABE67E51A538E8F000024ED /* Helpers.swift in Sources */,
-				4A9699291B52F6D900E968F5 /* EditMoveViewController.swift in Sources */,
 				4ABE67E31A5227D3000024ED /* WorkoutViewController.swift in Sources */,
+				4A35B81C1B73150C00D4AB28 /* EditMoveViewController.swift in Sources */,
 				4ABE67BE1A520A16000024ED /* AppDelegate.swift in Sources */,
 				4ABE67C01A520A16000024ED /* SetupViewController.swift in Sources */,
 				4ABE67ED1A54D30D000024ED /* beep.wav in Sources */,

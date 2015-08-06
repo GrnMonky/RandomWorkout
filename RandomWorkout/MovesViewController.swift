@@ -116,14 +116,35 @@ UITableViewDataSource, UITableViewDelegate {
         self.presentViewController(controller, animated: true, completion: nil)
     }
     
+    @IBAction func showAlertTapped(sender: AnyObject) {
+        //Create the AlertController
+        let myAlertController: UIAlertController = UIAlertController(title: "Hey!", message: "Are You sure you want to delete every move?", preferredStyle: .Alert)
+        
+        //Create and add the Cancel action
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+            //Do some stuff
+        }
+        myAlertController.addAction(cancelAction)
+        //Create and an option action
+        let nextAction: UIAlertAction = UIAlertAction(title: "Next", style: .Default) { action -> Void in
+            
+            
+            Moves = [Move]()
+            self.tableView.reloadData()
+        }
+        myAlertController.addAction(nextAction)
+        
+        
+        //Present the AlertController
+        self.presentViewController(myAlertController, animated: true, completion: nil)
+    }
+    
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         
         var EditView = segue.destinationViewController as! EditMoveViewController
         
-    
-        var newMove = Move()
         EditView.Index = -1
         tableView.reloadData()
     }

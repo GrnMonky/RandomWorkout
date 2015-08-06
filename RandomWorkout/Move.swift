@@ -43,7 +43,7 @@ class Move {
     }
     
     init(){
-        Name = "new Move";
+        Name = "New Move";
     }
     
     //Generates Moves

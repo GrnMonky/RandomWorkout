@@ -160,6 +160,7 @@ class WorkoutViewController: UIViewController {
         TotalTimer.invalidate()
         SecondsTimer.invalidate()
         FiveMinuteTimer.invalidate()
+        previousMoves = [Move]()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -230,6 +231,8 @@ class WorkoutViewController: UIViewController {
     }*/
     
     var LastMove:Move = Move()
+    var previousMoves:[Move] = [Move]()
+
     
     private func ChooseNextMove() -> Move{
         //let timeLeft = EndTime - NSDate(CurrentMove.Time)
@@ -246,8 +249,25 @@ class WorkoutViewController: UIViewController {
         
         if(movesDoable.count != 0)
         {
-            let index = Int(arc4random_uniform(UInt32(movesDoable.count)))
-            return movesDoable[index]
+            var move : Move?
+            var old : Move?
+            
+            if movesDoable.count > 1 {
+            do {
+                move = movesDoable.sample()
+                old = previousMoves.sample()
+            } while move === old
+            }
+            else{
+                move = movesDoable[0]
+            }
+            
+            previousMoves.append(move!)
+            
+            while movesDoable.count < previousMoves.count{
+                previousMoves.removeAtIndex(0)
+            }
+            return move!
         }
         else{
             var cooldown = Move(name:"CoolDown")
