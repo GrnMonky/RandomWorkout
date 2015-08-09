@@ -57,6 +57,7 @@ UITableViewDataSource, UITableViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
+        //saveMoves()
         tableView.reloadData()
     }
     
@@ -121,12 +122,12 @@ UITableViewDataSource, UITableViewDelegate {
         let myAlertController: UIAlertController = UIAlertController(title: "Hey!", message: "Are You sure you want to delete every move?", preferredStyle: .Alert)
         
         //Create and add the Cancel action
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+        let cancelAction: UIAlertAction = UIAlertAction(title: "No", style: .Cancel) { action -> Void in
             //Do some stuff
         }
         myAlertController.addAction(cancelAction)
         //Create and an option action
-        let nextAction: UIAlertAction = UIAlertAction(title: "Next", style: .Default) { action -> Void in
+        let nextAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
             
             
             Moves = [Move]()

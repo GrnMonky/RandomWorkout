@@ -241,7 +241,7 @@ class WorkoutViewController: UIViewController {
         for move in Moves
         {
             /*move.Time < timeLeft &&*/
-            if (move.Removed == false && move !== CurrentMove)
+            if (move.Removed == false && move !== CurrentMove && !(previousMoves.filter({$0 === move}).count > 0))
             {
                 movesDoable.append(move)
             }
@@ -255,8 +255,7 @@ class WorkoutViewController: UIViewController {
             if movesDoable.count > 1 {
             do {
                 move = movesDoable.sample()
-                old = previousMoves.sample()
-            } while move === old
+            } while previousMoves.filter({$0 === move}).count > 0
             }
             else{
                 move = movesDoable[0]
@@ -264,15 +263,19 @@ class WorkoutViewController: UIViewController {
             
             previousMoves.append(move!)
             
-            while movesDoable.count < previousMoves.count{
-                previousMoves.removeAtIndex(0)
+            while Moves.count <= previousMoves.count{
+                //previousMoves.removeAtIndex(0)
+                previousMoves = [Move]()
             }
             return move!
         }
         else{
-            var cooldown = Move(name:"CoolDown")
+            previousMoves = [Move]()
+            
+            return ChooseNextMove()
+            /*var cooldown = Move(name:"CoolDown")
             cooldown.Time = 45//timeLeft
-            return cooldown
+            return cooldown*/
         }
     }
 }

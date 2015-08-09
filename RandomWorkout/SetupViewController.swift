@@ -26,6 +26,12 @@ class SetupViewController: UIViewController {
         
         self.UpdateTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("Update"), userInfo: nil, repeats: true)
         // Do any additional setup after loading the view, typically from a nib.
+        
+        GenerateMoves()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //saveMoves()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,10 +53,14 @@ class SetupViewController: UIViewController {
         if(sender.on)
         {
             EndTimeLbl.text = "Infinite"
+            StopTimePicker.userInteractionEnabled = false
+            StopTimePicker.alpha = 0.5
         }
         else
         {
             EndTimeLbl.text = (Int)((StopTimePicker.date.timeIntervalSinceDate(NSDate())/60)).description + " mins"
+            StopTimePicker.userInteractionEnabled = true
+            StopTimePicker.alpha = 1;
         }
     }
     
@@ -76,8 +86,5 @@ class SetupViewController: UIViewController {
         EndTime = StopTimePicker.date
         Infinite = UseEndTimeSwitch.on
     }
-    
-    
-
 }
 
