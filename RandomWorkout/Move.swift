@@ -29,9 +29,10 @@ class MovesHolder{
 
 var Moves = [Move]()
 
+
 func GenerateMoves(){
     
-// Load any saved meals, otherwise load sample data.
+// Load any saved moves, otherwise load sample data.
 if let savedMoves = loadMoves() {
     Moves = savedMoves
     
@@ -202,7 +203,7 @@ class Move: NSObject, NSCoding {
     var Name:String = ""
     var Time:Int = 30
     var Weight:Int = 0
-    //var Tags:[String] = [String]()
+    var Tags:[Tag] = [Tag]()
     var Removed = false
     
     // MARK: Archiving Paths
@@ -217,6 +218,7 @@ class Move: NSObject, NSCoding {
         static let timeKey = "time"
         static let weightKey = "weight"
         static let removeKey = "removed"
+        static let tagsKey = "tags"
     }
     
     // MARK: Initialization
@@ -246,9 +248,10 @@ class Move: NSObject, NSCoding {
         aCoder.encodeInteger(Time, forKey: PropertyKey.timeKey)
         aCoder.encodeInteger(Weight, forKey: PropertyKey.weightKey)
         aCoder.encodeBool(Removed, forKey: PropertyKey.removeKey)
+        aCoder.encodeObject(Tags, forKey: PropertyKey.tagsKey)
     }
     
-    required convenience init(coder aDecoder: NSCoder) {
+    required convenience init?(coder aDecoder: NSCoder) {
         
         
         // Must call designated initializer.
@@ -263,6 +266,8 @@ class Move: NSObject, NSCoding {
         
         self.Removed = aDecoder.decodeBoolForKey(PropertyKey.removeKey)
         
+        //self.Tags = aDecoder.decodeObjectForKey(PropertyKey.tagsKey) as! [Tag]
+        
     }
     
 }
@@ -270,7 +275,7 @@ class Move: NSObject, NSCoding {
 func saveMoves() {
     let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(Moves, toFile: Move.ArchiveURL.path!)
     if !isSuccessfulSave {
-        print("Failed to save moves...")
+        print("Failed to save moves...", terminator: "")
     }
 }
 

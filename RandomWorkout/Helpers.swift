@@ -12,33 +12,37 @@ import AVFoundation
 class Helpers {
     
     class func ConvertFloatToTimeMilli(time:Float) -> String{
-        var minutes = floor(time/60)
-        var seconds = round(time - minutes * 60)
-        var milliseconds = time%1 * 100
+        let minutes = floor(time/60)
+        let seconds = round(time - minutes * 60)
+        let milliseconds = round(time%1 * 100)
         return "\(AddZero(minutes)):\(AddZero(seconds)):\(AddZero(milliseconds))";
     }
     
     class func ConvertFloatToTime(time:Float) -> String{
-        var minutes = floor(time/60)
-        var seconds = round(time - minutes * 60)
+        let minutes = floor(time/60)
+        let seconds = round(time - minutes * 60)
         return "\(Int(minutes)):\(AddZero(seconds))";
     }
     
-    private class func AddZero(time:Float) -> String{
-        if(time < 10){
-        
-            return "0\(Int(time))"
-        }
-        
-        return "\(Int(time))"
+    class func ConvertFloatToTimeMilli(time:Double) -> String{
+        let minutes = floor(time/60)
+        let seconds = round(time - minutes * 60)
+        let milliseconds = round(time%1 * 100)
+        return "\(AddZero(minutes)):\(AddZero(seconds)):\(AddZero(milliseconds))";
+    }
+    
+    class func ConvertFloatToTime(time:Double) -> String{
+        let minutes = floor(time/60)
+        let seconds = round(time - minutes * 60)
+        return "\(Int(minutes)):\(AddZero(seconds))";
     }
     
     class func PlaySound(url:NSURL){
         
-        var audioPlayer = AVAudioPlayer(contentsOfURL: url, error: nil)
-        audioPlayer.prepareToPlay()
+        let audioPlayer = try? AVAudioPlayer(contentsOfURL: url)
+        audioPlayer!.prepareToPlay()
         
-        audioPlayer.play()
+        audioPlayer!.play()
         
         //var mySound = NSSound(named:"Morse.aiff")
         //mySound.play()
@@ -46,6 +50,54 @@ class Helpers {
     }
     
 }
+
+private func AddZero(time:Float) -> String{
+    if(time < 10){
+        
+        return "0\(Int(time))"
+    }
+    
+    return "\(Int(time))"
+}
+
+private func AddZero(time:Double) -> String{
+    if(time < 10){
+        
+        return "0\(Int(time))"
+    }
+    
+    return "\(Int(time))"
+}
+
+private func AddZero(time:Int) -> String{
+    if(time < 10){
+        
+        return "0\(Int(time))"
+    }
+    
+    return "\(Int(time))"
+}
+
+
+extension Double {
+    
+    func Minutes() -> String {
+        return "\(AddZero(Int(self)))"
+    }
+    
+    func Seconds() -> String {
+        return "\(AddZero(Int(round(self * 100)) % 100))"
+    }
+    
+    func MinutesAndSeconds() -> String {
+        return "\(AddZero(Int(round(self * 100)) % 100))"
+    }
+    
+    init(minutes: Int, seconds: Int) {
+        self = Double(minutes) + ( Double(seconds) / 100 )
+    }
+}
+
 
 
 

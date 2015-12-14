@@ -15,7 +15,7 @@ UITableViewDataSource, UITableViewDelegate {
     //var tableView: UITableView?
     //var allRows = Moves //[String]()
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         /*for index in 0..<10{
@@ -72,7 +72,7 @@ UITableViewDataSource, UITableViewDelegate {
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
             
             let cell = tableView.dequeueReusableCellWithIdentifier("identifier",
-                forIndexPath: indexPath) as! UITableViewCell
+                forIndexPath: indexPath) 
             
             cell.textLabel!.text = Moves[indexPath.row].Name
             
@@ -107,7 +107,7 @@ UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        var controller = self.storyboard?.instantiateViewControllerWithIdentifier("EditMoveViewController") as! EditMoveViewController
+        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("EditMoveViewController") as! EditMoveViewController
         controller.Index = indexPath.row
         self.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
         // Cover Vertical is necessary for CurrentContext
@@ -144,7 +144,7 @@ UITableViewDataSource, UITableViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         
-        var EditView = segue.destinationViewController as! EditMoveViewController
+        let EditView = segue.destinationViewController as! EditMoveViewController
         
         EditView.Index = -1
         tableView.reloadData()
