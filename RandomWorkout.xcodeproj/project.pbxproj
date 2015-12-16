@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4A35B81A1B72FF2000D4AB28 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A35B8191B72FF2000D4AB28 /* Extensions.swift */; };
-		4A35B81C1B73150C00D4AB28 /* EditMoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A35B81B1B73150C00D4AB28 /* EditMoveViewController.swift */; };
 		4A45FEDC1A6B53FB00C5DFDF /* MovesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45FEDB1A6B53FB00C5DFDF /* MovesViewController.swift */; };
+		4A5D56C61C2119E400EB68D6 /* EditMoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D56C51C2119E400EB68D6 /* EditMoveViewController.swift */; };
+		4A5D56C81C211C8100EB68D6 /* button.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D56C71C211C8000EB68D6 /* button.wav */; };
 		4A9EF0C41B9378FB00D5A72D /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9EF0C31B9378FB00D5A72D /* TagsViewController.swift */; };
 		4A9EF0C61B93888400D5A72D /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9EF0C51B93888400D5A72D /* Tag.swift */; };
 		4AABB7CC1A68B84A00D60A35 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */; };
@@ -23,7 +24,6 @@
 		4ABE67E31A5227D3000024ED /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */; };
 		4ABE67E51A538E8F000024ED /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67E41A538E8F000024ED /* Helpers.swift */; };
 		4ABE67EC1A54CEAD000024ED /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE67EB1A54CEAD000024ED /* beep.wav */; };
-		4AC71EFF1C1E162F00473486 /* button.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4AC71EFE1C1E162F00473486 /* button.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +38,9 @@
 
 /* Begin PBXFileReference section */
 		4A35B8191B72FF2000D4AB28 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		4A35B81B1B73150C00D4AB28 /* EditMoveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditMoveViewController.swift; path = ../../../.Trash/EditMoveViewController.swift; sourceTree = "<group>"; };
 		4A45FEDB1A6B53FB00C5DFDF /* MovesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovesViewController.swift; sourceTree = "<group>"; };
+		4A5D56C51C2119E400EB68D6 /* EditMoveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMoveViewController.swift; sourceTree = "<group>"; };
+		4A5D56C71C211C8000EB68D6 /* button.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button.wav; sourceTree = "<group>"; };
 		4A9EF0C31B9378FB00D5A72D /* TagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
 		4A9EF0C51B93888400D5A72D /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -57,7 +58,6 @@
 		4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		4ABE67E41A538E8F000024ED /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		4ABE67EB1A54CEAD000024ED /* beep.wav */ = {isa = PBXFileReference; explicitFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
-		4AC71EFE1C1E162F00473486 /* button.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = button.wav; path = ../../../Downloads/button.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,7 @@
 		4A1E88C31B3738A8009D18B1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4A35B81B1B73150C00D4AB28 /* EditMoveViewController.swift */,
+				4A5D56C51C2119E400EB68D6 /* EditMoveViewController.swift */,
 				4ABE67BF1A520A16000024ED /* SetupViewController.swift */,
 				4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */,
 				4A45FEDB1A6B53FB00C5DFDF /* MovesViewController.swift */,
@@ -164,7 +164,7 @@
 		4ABE67EA1A54CB29000024ED /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				4AC71EFE1C1E162F00473486 /* button.wav */,
+				4A5D56C71C211C8000EB68D6 /* button.wav */,
 				4ABE67EB1A54CEAD000024ED /* beep.wav */,
 			);
 			name = Assets;
@@ -254,9 +254,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ABE67C51A520A16000024ED /* Main.storyboard in Resources */,
+				4A5D56C81C211C8100EB68D6 /* button.wav in Resources */,
 				4ABE67CA1A520A16000024ED /* LaunchScreen.xib in Resources */,
 				4ABE67C71A520A16000024ED /* Images.xcassets in Resources */,
-				4AC71EFF1C1E162F00473486 /* button.wav in Resources */,
 				4ABE67EC1A54CEAD000024ED /* beep.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,7 +280,7 @@
 				4ABE67E11A520D6F000024ED /* Move.swift in Sources */,
 				4ABE67E51A538E8F000024ED /* Helpers.swift in Sources */,
 				4ABE67E31A5227D3000024ED /* WorkoutViewController.swift in Sources */,
-				4A35B81C1B73150C00D4AB28 /* EditMoveViewController.swift in Sources */,
+				4A5D56C61C2119E400EB68D6 /* EditMoveViewController.swift in Sources */,
 				4A9EF0C61B93888400D5A72D /* Tag.swift in Sources */,
 				4ABE67BE1A520A16000024ED /* AppDelegate.swift in Sources */,
 				4A9EF0C41B9378FB00D5A72D /* TagsViewController.swift in Sources */,
