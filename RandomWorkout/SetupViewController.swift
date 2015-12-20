@@ -13,6 +13,12 @@ var EndTime:NSDate = NSDate()
 var Infinite = false
 
 class SetupViewController: UIViewController {
+    
+    var currentTime: Int {
+        get{
+            return Int(ceil(StopTimePicker.date.timeIntervalSinceDate(NSDate())/60))
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +26,7 @@ class SetupViewController: UIViewController {
         
         StopTimePicker.date = NSDate(timeIntervalSinceNow: 60 * 16)
         
-        EndTimeLbl.text = (Int)((StopTimePicker.date.timeIntervalSinceDate(NSDate())/60)).description + " mins"
+        EndTimeLbl.text = String(currentTime) + " mins"
         
         UseEndTimeSwitch.on = false
         
@@ -48,6 +54,17 @@ class SetupViewController: UIViewController {
     @IBOutlet weak var EndTimeLbl: UILabel!
     
     
+    var stepperValue = 0
+    @IBAction func TimeStepperChanged(sender: UIStepper) {
+        let diff = sender.value - Double(stepperValue)
+        if(diff > 0 || currentTime > 2){
+        StopTimePicker.date = StopTimePicker.date.dateByAddingTimeInterval(diff * 60)
+        let min = NSCalendar.currentCalendar().component(NSCalendarUnit.Minute, fromDate: StopTimePicker.date)
+        stepperValue = min
+        }
+        sender.value = Double(stepperValue)
+    }
+    
     @IBAction func InfiniteSwitched(sender: UISwitch) {
         StopTimePicker.enabled = !sender.on
         if(sender.on)
@@ -66,7 +83,7 @@ class SetupViewController: UIViewController {
     
     @IBAction func TimeIncremented(sender: UIStepper) {
         
-        EndTimeLbl.text = (Int)((StopTimePicker.date.timeIntervalSinceDate(NSDate())/60)).description + " mins"
+        EndTimeLbl.text = String(currentTime) + " mins"
     }
     
     func Update()
@@ -75,9 +92,10 @@ class SetupViewController: UIViewController {
         
         if(!UseEndTimeSwitch.on)
         {
-        EndTimeLbl.text = (Int)((StopTimePicker.date.timeIntervalSinceDate(NSDate())/60)).description + " mins"
+        EndTimeLbl.text = String(currentTime) + " mins"
         }
     }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

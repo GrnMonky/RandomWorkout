@@ -280,7 +280,7 @@ class WorkoutViewController: UIViewController {
         if(movesDoable.count != 0)
         {
             var move : Move?
-            var old : Move?
+            //var old : Move?
             
             move = movesDoable.sample()
             

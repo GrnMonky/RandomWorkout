@@ -71,10 +71,14 @@ UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("identifier",
-                forIndexPath: indexPath) 
+            let cell = tableView.dequeueReusableCellWithIdentifier("Cell",
+                forIndexPath: indexPath) as! TableViewCell
+            
+            
             
             cell.textLabel!.text = Moves[indexPath.row].Name
+            cell.Switch.on = !Moves[indexPath.row].Removed
+            cell.Content = Moves[indexPath.row]
             
             return cell
             

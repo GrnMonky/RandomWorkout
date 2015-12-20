@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A08812F1C271CEF004E9558 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A08812E1C271CEF004E9558 /* TableViewCell.swift */; };
 		4A35B81A1B72FF2000D4AB28 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A35B8191B72FF2000D4AB28 /* Extensions.swift */; };
 		4A45FEDC1A6B53FB00C5DFDF /* MovesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45FEDB1A6B53FB00C5DFDF /* MovesViewController.swift */; };
 		4A5D56C61C2119E400EB68D6 /* EditMoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D56C51C2119E400EB68D6 /* EditMoveViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A08812E1C271CEF004E9558 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		4A35B8191B72FF2000D4AB28 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4A45FEDB1A6B53FB00C5DFDF /* MovesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovesViewController.swift; sourceTree = "<group>"; };
 		4A5D56C51C2119E400EB68D6 /* EditMoveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMoveViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */,
 				4A45FEDB1A6B53FB00C5DFDF /* MovesViewController.swift */,
 				4A9EF0C31B9378FB00D5A72D /* TagsViewController.swift */,
+				4A08812E1C271CEF004E9558 /* TableViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				4ABE67E51A538E8F000024ED /* Helpers.swift in Sources */,
 				4ABE67E31A5227D3000024ED /* WorkoutViewController.swift in Sources */,
 				4A5D56C61C2119E400EB68D6 /* EditMoveViewController.swift in Sources */,
+				4A08812F1C271CEF004E9558 /* TableViewCell.swift in Sources */,
 				4A9EF0C61B93888400D5A72D /* Tag.swift in Sources */,
 				4ABE67BE1A520A16000024ED /* AppDelegate.swift in Sources */,
 				4A9EF0C41B9378FB00D5A72D /* TagsViewController.swift in Sources */,
