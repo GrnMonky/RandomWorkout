@@ -34,6 +34,8 @@ class SetupViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         GenerateMoves()
+        
+        HealthKitHelper.Setup()
     }
     
     override func viewWillAppear(animated: Bool) {

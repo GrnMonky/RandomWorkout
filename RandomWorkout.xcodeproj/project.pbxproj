@@ -25,6 +25,8 @@
 		4ABE67E31A5227D3000024ED /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */; };
 		4ABE67E51A538E8F000024ED /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67E41A538E8F000024ED /* Helpers.swift */; };
 		4ABE67EC1A54CEAD000024ED /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE67EB1A54CEAD000024ED /* beep.wav */; };
+		4AC9E9D31C35B8BA00D7EEC2 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC9E9D21C35B8BA00D7EEC2 /* HealthKit.framework */; };
+		4AC9E9D51C35BAE700D7EEC2 /* HealthKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9E9D41C35BAE700D7EEC2 /* HealthKitHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,9 @@
 		4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		4ABE67E41A538E8F000024ED /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		4ABE67EB1A54CEAD000024ED /* beep.wav */ = {isa = PBXFileReference; explicitFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
+		4AC9E9D11C35B8BA00D7EEC2 /* RandomWorkout.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RandomWorkout.entitlements; sourceTree = "<group>"; };
+		4AC9E9D21C35B8BA00D7EEC2 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		4AC9E9D41C35BAE700D7EEC2 /* HealthKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AABB7CC1A68B84A00D60A35 /* AVFoundation.framework in Frameworks */,
+				4AC9E9D31C35B8BA00D7EEC2 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +103,7 @@
 		4ABE67AF1A520A16000024ED = {
 			isa = PBXGroup;
 			children = (
+				4AC9E9D21C35B8BA00D7EEC2 /* HealthKit.framework */,
 				4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */,
 				4ABE67BA1A520A16000024ED /* RandomWorkout */,
 				4ABE67D21A520A16000024ED /* RandomWorkoutTests */,
@@ -116,6 +123,7 @@
 		4ABE67BA1A520A16000024ED /* RandomWorkout */ = {
 			isa = PBXGroup;
 			children = (
+				4AC9E9D11C35B8BA00D7EEC2 /* RandomWorkout.entitlements */,
 				4A1E88C31B3738A8009D18B1 /* ViewControllers */,
 				4ABE67EA1A54CB29000024ED /* Assets */,
 				4ABE67DF1A520D36000024ED /* MoveClasses */,
@@ -126,6 +134,7 @@
 				4ABE67BB1A520A16000024ED /* Supporting Files */,
 				4ABE67E41A538E8F000024ED /* Helpers.swift */,
 				4A35B8191B72FF2000D4AB28 /* Extensions.swift */,
+				4AC9E9D41C35BAE700D7EEC2 /* HealthKitHelper.swift */,
 			);
 			path = RandomWorkout;
 			sourceTree = "<group>";
@@ -225,6 +234,11 @@
 					4ABE67B71A520A16000024ED = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = TUD3E4WJFE;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					4ABE67CE1A520A16000024ED = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -288,6 +302,7 @@
 				4A9EF0C61B93888400D5A72D /* Tag.swift in Sources */,
 				4ABE67BE1A520A16000024ED /* AppDelegate.swift in Sources */,
 				4A9EF0C41B9378FB00D5A72D /* TagsViewController.swift in Sources */,
+				4AC9E9D51C35BAE700D7EEC2 /* HealthKitHelper.swift in Sources */,
 				4ABE67C01A520A16000024ED /* SetupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +428,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RandomWorkout/RandomWorkout.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RandomWorkout/Info.plist;
@@ -426,6 +442,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RandomWorkout/RandomWorkout.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RandomWorkout/Info.plist;

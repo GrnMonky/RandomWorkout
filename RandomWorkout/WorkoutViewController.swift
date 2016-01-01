@@ -27,6 +27,7 @@ class WorkoutViewController: UIViewController {
     private var beep:Int = 5;
     var audioPlayer:AVAudioPlayer;
     var buttonPlayer:AVAudioPlayer;
+    var startTime: NSDate = NSDate();
     
     let synth = AVSpeechSynthesizer()
     var myUtterance = AVSpeechUtterance(string: "")
@@ -74,10 +75,12 @@ class WorkoutViewController: UIViewController {
         CurrentMove = dummyMove
         
         NextMove = ChooseNextMove()
+        startTime = NSDate()
     }
     
     override func viewDidDisappear(animated : Bool){
         UIApplication.sharedApplication().idleTimerDisabled = false
+        
     }
     
     
@@ -191,6 +194,7 @@ class WorkoutViewController: UIViewController {
         SecondsTimer.invalidate()
         FiveMinuteTimer.invalidate()
         previousMoves = [Move]()
+        HealthKitHelper.SaveBasicWorkout(startTime, end: NSDate())
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
