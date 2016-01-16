@@ -40,14 +40,20 @@ class HealthKitManager{
         }
     }
     
-    func SaveBasicWorkout(start:NSDate, end:NSDate){
+    func SaveBasicWorkout(start:NSDate, end:NSDate, interval:NSTimeInterval){
         
         guard healthKitAvailable else{ return }
         
-        let workout = HKWorkout(activityType: .Other, startDate:start, endDate:end)
+        var workout: HKWorkout? = nil
+        
+        if #available(iOS 9.0, *) {
+            workout = HKWorkout(activityType: .Other, startDate: start, endDate: end, duration: interval, totalEnergyBurned: nil, totalDistance: nil, device: nil, metadata: nil)
+        } else {
+            workout = HKWorkout(activityType: .Other, startDate: start, endDate: end)
+        }
         
         // Save the workout before adding detailed samples.
-        healthKitStore.saveObject(workout) { (success, error) -> Void in
+        healthKitStore.saveObject(workout!) { (success, error) -> Void in
             guard success else {
                 // Perform proper error handling here...
                 fatalError("*** An error occurred while saving the " +

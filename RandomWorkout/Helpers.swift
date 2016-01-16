@@ -98,6 +98,10 @@ extension Double {
     }
 }
 
+class ArrayWrapper<Type> {
+    var array: [Type] = [Type]()
+}
+
 
 
 

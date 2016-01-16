@@ -11,8 +11,16 @@ import UIKit
 
 class EditMoveViewController: UIViewController {
     
+    
+    
     var Index : Int!
     private var _move = Move()
+    private let arrayReference = ArrayWrapper<String>()
+    private var Tags: [String] {
+        get{ return arrayReference.array }
+        set(val){ arrayReference.array = val }
+    }
+    
     
     @IBOutlet weak var NameTxtFld: UITextField!
     @IBOutlet weak var TimeDisplay: UILabel!
@@ -35,6 +43,7 @@ class EditMoveViewController: UIViewController {
         NavigationBar.title = _move.Name
         TimeDisplay.text = String(_move.Time)
         TimeStepper.value = Double(_move.Time)
+        Tags = _move.Tags
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,7 +53,10 @@ class EditMoveViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        //var WorkoutView = segue.destinationViewController as! WorkoutViewController
+        let NavView = segue.destinationViewController as! UINavigationController
+        let TagView = NavView.childViewControllers.first! as! EditTagsViewController
+        
+        TagView.TagsArray = arrayReference
     }
     
     @IBAction func CancelAction(sender: AnyObject){
@@ -66,6 +78,7 @@ class EditMoveViewController: UIViewController {
     {
         _move.Time = Int(TimeStepper.value)
         _move.Name = NameTxtFld.text!
+        _move.Tags = Tags
         
         if(Index == -1)
         {
@@ -73,4 +86,6 @@ class EditMoveViewController: UIViewController {
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
 }

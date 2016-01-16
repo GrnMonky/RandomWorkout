@@ -10,22 +10,32 @@ import Foundation
 
 var GlobalTags = [String]()
 
-class Tag: NSObject {//, NSCoding{
+func GenerateTags(){
     
-    required init?(coder aDecoder: NSCoder){}
-    
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("tags")
+    // Load any saved moves, otherwise load sample data.
+    if let savedTags = loadTags() {
+        GlobalTags = savedTags
+        
+    } else {
+        GlobalTags = [
+            "Cardio",
+            "Strength"
+        ]
+    }
+}
 
+class Tags{
+    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("Tags")
 }
 
 func saveTags() {
-    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(GlobalTags, toFile: Tag.ArchiveURL.path!)
+    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(GlobalTags, toFile: Tags.ArchiveURL.path!)
     if !isSuccessfulSave {
         print("Failed to save tags...", terminator: "")
     }
 }
 
-func loadTags() -> [Tag]? {
-    return NSKeyedUnarchiver.unarchiveObjectWithFile(Tag.ArchiveURL.path!) as? [Tag]
+func loadTags() -> [String]? {
+    return NSKeyedUnarchiver.unarchiveObjectWithFile(Tags.ArchiveURL.path!) as? [String]
 }

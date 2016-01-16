@@ -9,8 +9,8 @@
 import UIKit
 
 
-var EndTime:NSDate = NSDate()
-var Infinite = false
+
+
 
 class SetupViewController: UIViewController {
     
@@ -19,12 +19,16 @@ class SetupViewController: UIViewController {
             return Int(ceil(StopTimePicker.date.timeIntervalSinceDate(NSDate())/60))
         }
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Update()
         
-        StopTimePicker.date = NSDate(timeIntervalSinceNow: 60 * 16)
+        GenerateWorkout()
+        
+        
+        StopTimePicker.date = NSDate(timeIntervalSinceNow: Double(CurrentWorkout.TimeDiff))
         
         EndTimeLbl.text = String(currentTime) + " mins"
         
@@ -33,7 +37,11 @@ class SetupViewController: UIViewController {
         self.UpdateTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("Update"), userInfo: nil, repeats: true)
         // Do any additional setup after loading the view, typically from a nib.
         
+        AllMovesSwitch.on = CurrentWorkout.MoveTagsOn
+        SelectTagsBtn.enabled = CurrentWorkout.MoveTagsOn
+        
         GenerateMoves()
+        GenerateTags()
         
         HealthKitHelper.Setup()
     }
@@ -54,7 +62,8 @@ class SetupViewController: UIViewController {
     @IBOutlet weak var UseEndTimeSwitch: UISwitch!
     @IBOutlet weak var StopTimePicker: UIDatePicker!
     @IBOutlet weak var EndTimeLbl: UILabel!
-    
+    @IBOutlet weak var SelectTagsBtn: UIButton!
+    @IBOutlet weak var AllMovesSwitch: UISwitch!
     
     var stepperValue = 0
     @IBAction func TimeStepperChanged(sender: UIStepper) {
@@ -83,6 +92,11 @@ class SetupViewController: UIViewController {
         }
     }
     
+    @IBAction func AllMovesSwitched(sender: UISwitch){
+        SelectTagsBtn.enabled = sender.on
+        CurrentWorkout.MoveTagsOn = sender.on
+    }
+    
     @IBAction func TimeIncremented(sender: UIStepper) {
         
         EndTimeLbl.text = String(currentTime) + " mins"
@@ -98,13 +112,52 @@ class SetupViewController: UIViewController {
         }
     }
     
+    var taggedMoves = [Move]()
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if let ident = identifier {
+            if ident == "Workout" {
+                if !CurrentWorkout.MoveTagsOn {
+                    taggedMoves = Moves.filter({!$0.Removed})
+                }
+                else{
+                taggedMoves = [Move]()
+                for move in Moves{
+                    for tag in CurrentWorkout.WorkoutTags {
+                        if !move.Removed && move.Tags.contains(tag){
+                            taggedMoves.append(move)
+                            break
+                        }
+                    }
+                }
+                }
+                
+                if taggedMoves.count < 1 {
+                    return false;
+                }
+                
+                return true
+            }
+        }
+        return true
+    }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         //var WorkoutView = segue.destinationViewController as! WorkoutViewController
         
-        EndTime = StopTimePicker.date
-        Infinite = UseEndTimeSwitch.on
+        CurrentWorkout.Infinite = UseEndTimeSwitch.on
+        
+        if let NavView = segue.destinationViewController as? UINavigationController {
+            if let TagView = NavView.childViewControllers.first! as? EditTagsViewController {
+                TagView.TagsArray = CurrentWorkout.WorkoutTagsReference
+            }
+            if let WorkoutView = NavView.childViewControllers.first! as? WorkoutViewController {
+                CurrentWorkout.TimeDiff = (Int)(StopTimePicker.date.timeIntervalSinceDate(NSDate()))
+                WorkoutView.EndTime = StopTimePicker.date
+                WorkoutView.LocalMoves = taggedMoves
+            }
+        }
     }
 }
 

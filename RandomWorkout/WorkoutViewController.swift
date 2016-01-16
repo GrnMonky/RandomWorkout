@@ -16,7 +16,9 @@ class WorkoutViewController: UIViewController {
     var beepSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("beep", ofType: "wav")!)
     var buttonSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("button", ofType: "wav")!)
     
-    var NextMove:Move = Move()
+    var LocalMoves = [Move]()
+    var EndTime = NSDate()
+    var NextMove:Move? = Move()
     var TotalTimer = NSTimer()
     var SecondsTimer = NSTimer()
     var FiveMinuteTimer = NSTimer()
@@ -79,8 +81,8 @@ class WorkoutViewController: UIViewController {
     }
     
     override func viewDidDisappear(animated : Bool){
+        HealthKitHelper.SaveBasicWorkout(startTime, end: NSDate(), interval: TotalTime)
         UIApplication.sharedApplication().idleTimerDisabled = false
-        
     }
     
     
@@ -128,20 +130,22 @@ class WorkoutViewController: UIViewController {
         if(MoveTime <= 0){
             UpdateState()
         }
-        
-        if(!Infinite)
-        {
-        let result = NSDate().compare(EndTime)
-        if(result == NSComparisonResult.OrderedDescending || result ==  NSComparisonResult.OrderedSame){
-            
-            Speak("Workout Completed")
-            Done()
-        }
-        }
-        
-        
     }
     
+    func CheckWorkoutComplete() -> Bool{
+        if(!CurrentWorkout.Infinite)
+        {
+            let result = NSDate().compare(EndTime)
+            if(result == NSComparisonResult.OrderedDescending || result ==  NSComparisonResult.OrderedSame){
+                
+                Speak("Workout Completed")
+                Done()
+                return true
+            }
+        }
+        
+        return false
+    }
     
     /*func beep(){
 
@@ -160,18 +164,24 @@ class WorkoutViewController: UIViewController {
     func UpdateState(){
         switch(State){
         case .InMove:
+            if CheckWorkoutComplete() {
+                return
+            }
             audioPlayer.play()
             MoveTime = 5
             beep = 5
-            CurrentMoveLbl.text = "Up next: \(NextMove.Name)"
-            SpeakMove(NextMove)
+            CurrentMoveLbl.text = "Up next: \(NextMove!.Name)"
+            SpeakMove(NextMove!)
             State = WorkoutState.Preping
             break
         case .Preping:
             halfway = false
-            CurrentMove = NextMove
-            MoveTime = Double(NextMove.Time)
+            CurrentMove = NextMove!
+            MoveTime = Double(NextMove!.Time)
             NextMove = ChooseNextMove()
+            if NextMove == nil{
+                Done()
+            }
             State = WorkoutState.InMove
             //EnableAllBtns()
             break
@@ -194,7 +204,7 @@ class WorkoutViewController: UIViewController {
         SecondsTimer.invalidate()
         FiveMinuteTimer.invalidate()
         previousMoves = [Move]()
-        HealthKitHelper.SaveBasicWorkout(startTime, end: NSDate())
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -267,17 +277,26 @@ class WorkoutViewController: UIViewController {
     
 
     
-    private func ChooseNextMove() -> Move{
+    private func ChooseNextMove() -> Move? {
         //let timeLeft = EndTime - NSDate(CurrentMove.Time)
         
         var movesDoable = [Move]()
         
-        for move in Moves
+        if !(LocalMoves.contains({!$0.Removed})){
+                return nil
+        } else if LocalMoves.count == 1 {
+            
+            movesDoable.append(LocalMoves[0])
+        }
+        else
         {
-            /*move.Time < timeLeft &&*/
-            if (!(previousMoves.filter({$0 === move}).count > 0) && move.Removed == false && move != CurrentMove)
+            for move in LocalMoves
             {
-                movesDoable.append(move)
+                /*move.Time < timeLeft &&*/
+                if (!(previousMoves.filter({$0 === move}).count > 0) && !move.Removed && move != CurrentMove)
+                {
+                    movesDoable.append(move)
+                }
             }
         }
         
