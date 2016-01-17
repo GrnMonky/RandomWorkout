@@ -56,6 +56,7 @@ class EditMoveViewController: UIViewController {
         let NavView = segue.destinationViewController as! UINavigationController
         let TagView = NavView.childViewControllers.first! as! EditTagsViewController
         
+        TagView.title = "\(NameTxtFld.text!) Tags"
         TagView.TagsArray = arrayReference
     }
     
