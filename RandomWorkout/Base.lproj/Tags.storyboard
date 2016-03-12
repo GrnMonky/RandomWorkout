@@ -8,7 +8,7 @@
         <!--Tags View Controller-->
         <scene sceneID="EB4-3G-JSq">
             <objects>
-                <tableViewController title="Tags View Controller" id="EVt-gy-xgl" customClass="EditTagsViewController" customModule="RandomWorkout" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Tags View Controller" clearsSelectionOnViewWillAppear="NO" id="EVt-gy-xgl" customClass="EditTagsViewController" customModule="RandomWorkout" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="rwD-32-VSk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

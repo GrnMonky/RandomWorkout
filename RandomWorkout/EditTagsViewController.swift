@@ -23,6 +23,7 @@ class EditTagsViewController: UITableViewController {
         super.viewDidLoad()
     }
     
+    
     /*override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView!.setEditing(editing, animated: animated)
@@ -30,7 +31,13 @@ class EditTagsViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         //saveMoves()
-        //tableView.reloadData()
+        super.viewWillAppear(animated)
+        
+        for cell in tableView.visibleCells {
+            if cell.selected{
+                tableView(tableView, didSelectRowAtIndexPath: tableView.indexPathForCell(cell)!)
+            }
+        }
     }
     
     /*required init?(coder aDecoder: NSCoder) {
@@ -49,39 +56,46 @@ class EditTagsViewController: UITableViewController {
             
     }
     
+    /*override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }*/
+    
     override func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
             
             let cell = tableView.dequeueReusableCellWithIdentifier("TagCell",
                 forIndexPath: indexPath)
             
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            
             cell.textLabel!.text = GlobalTags[indexPath.row]
             
             if let text = cell.textLabel!.text {
-            if CurrentTags.contains(text){
-                tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
-            }
+                if CurrentTags.contains(text){
+                    tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
+                    tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+                }
             }
             
             return cell
-            
     }
     
     override func tableView(tableView: UITableView,
         commitEditingStyle editingStyle: UITableViewCellEditingStyle,
         forRowAtIndexPath indexPath: NSIndexPath){
-            
+        
             if editingStyle == .Delete{
                 
                 removeTag(){ action -> Void in
+                    let tag = GlobalTags[indexPath.row]
                     GlobalTags.removeAtIndex(indexPath.row)
-                    //Moves.f
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
+                    for move in Moves {
+                        move.Tags = move.Tags.filter({$0 != tag})
+                    }
                 }
             }
     }
-    
-    
     
     func removeTag(actionParam: (UIAlertAction) -> Void){
         //Create the AlertController
@@ -98,10 +112,19 @@ class EditTagsViewController: UITableViewController {
         self.presentViewController(myAlertController, animated: true, completion: nil)
     }
     
-    /*override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        NSLog("You selected cell number: \(indexPath.row)!")
-        self.performSegueWithIdentifier("yourIdentifier", sender: self)
-    }*/
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+    }
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+    }
+    
+    func IsCellSelected(cell: UITableViewCell) -> Bool{
+        return cell.accessoryType != UITableViewCellAccessoryType.None
+    }
 
     @IBAction func Add(sender: UIBarButtonItem) {
         //1. Create the alert controller.
@@ -127,7 +150,7 @@ class EditTagsViewController: UITableViewController {
     @IBAction func Done(sender: UIBarButtonItem) {
         CurrentTags = [String]()
         for cell in tableView.visibleCells{
-            if cell.selected {
+            if IsCellSelected(cell) {
                 CurrentTags.append(cell.textLabel!.text!)
             }
         }
