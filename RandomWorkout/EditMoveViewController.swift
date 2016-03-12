@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class EditMoveViewController: UIViewController {
+class EditMoveViewController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -44,6 +44,12 @@ class EditMoveViewController: UIViewController {
         TimeDisplay.text = String(_move.Time)
         TimeStepper.value = Double(_move.Time)
         Tags = _move.Tags
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
+    {
+        textField.resignFirstResponder()
+        return true;
     }
     
     override func didReceiveMemoryWarning() {
