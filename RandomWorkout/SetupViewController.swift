@@ -32,9 +32,11 @@ class SetupViewController: UIViewController {
         
         EndTimeLbl.text = String(currentTime) + " mins"
         
-        UseEndTimeSwitch.on = false
+        UseEndTimeSwitch.on = CurrentWorkout.Infinite
         
-        self.UpdateTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("Update"), userInfo: nil, repeats: true)
+        InfiniteSwitched(UseEndTimeSwitch)
+        
+        self.UpdateTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(SetupViewController.Update), userInfo: nil, repeats: true)
         // Do any additional setup after loading the view, typically from a nib.
         
         AllMovesSwitch.on = CurrentWorkout.MoveTagsOn

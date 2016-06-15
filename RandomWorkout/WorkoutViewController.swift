@@ -61,7 +61,7 @@ class WorkoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.TotalTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        self.TotalTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(WorkoutViewController.update), userInfo: nil, repeats: true)
         start = NSDate()
         UIApplication.sharedApplication().idleTimerDisabled = true
         beep = 5
