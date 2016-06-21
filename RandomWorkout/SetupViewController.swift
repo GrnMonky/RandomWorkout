@@ -44,6 +44,7 @@ class SetupViewController: UIViewController {
         
         GenerateMoves()
         GenerateTags()
+        GenerateSettings()
         
         HealthKitHelper.Setup()
     }

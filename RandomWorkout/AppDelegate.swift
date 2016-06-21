@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         saveMoves()
         saveTags()
         saveWorkout()
+        saveSettings()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

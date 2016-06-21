@@ -535,7 +535,7 @@
         <!--Settings-->
         <scene sceneID="Fic-Uy-PMO">
             <objects>
-                <viewController title="Settings" id="abQ-zF-ufF" sceneMemberID="viewController">
+                <viewController title="Settings" id="abQ-zF-ufF" customClass="SettingsViewController" customModule="RandomWorkout" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vyi-TF-H6v"/>
                         <viewControllerLayoutGuide type="bottom" id="J1Z-vJ-MdV"/>
@@ -543,13 +543,43 @@
                     <view key="view" contentMode="scaleToFill" id="4tI-fp-nTD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Prep Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Et-cr-pt7">
+                                <rect key="frame" x="20" y="87" width="83" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minimumValue="2" maximumValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="w4O-yp-ZwU">
+                                <rect key="frame" x="486" y="79" width="94" height="29"/>
+                                <connections>
+                                    <action selector="PrepTimeStepperChanged:" destination="abQ-zF-ufF" eventType="valueChanged" id="MtG-ft-nvD"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="PrepTimeDisplay" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2W-a4-yn1">
+                                <rect key="frame" x="236" y="87" width="128" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="w4O-yp-ZwU" firstAttribute="trailing" secondItem="4tI-fp-nTD" secondAttribute="trailingMargin" id="92T-rx-YeT"/>
+                            <constraint firstItem="8Et-cr-pt7" firstAttribute="leading" secondItem="4tI-fp-nTD" secondAttribute="leadingMargin" id="KH7-mD-m4c"/>
+                            <constraint firstItem="m2W-a4-yn1" firstAttribute="bottom" secondItem="w4O-yp-ZwU" secondAttribute="bottom" id="X1j-U5-VvE"/>
+                            <constraint firstItem="8Et-cr-pt7" firstAttribute="baseline" secondItem="m2W-a4-yn1" secondAttribute="baseline" id="rdH-Mc-THQ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="second" id="etZ-vw-eNy"/>
+                    <connections>
+                        <outlet property="PrepTimeDisplay" destination="m2W-a4-yn1" id="b2S-LA-QLY"/>
+                        <outlet property="PrepTimeStepper" destination="w4O-yp-ZwU" id="lOg-mL-tqy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YO0-Eq-zjL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="646" y="1166"/>
+            <point key="canvasLocation" x="564" y="1178"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yOg-mb-OLd">
