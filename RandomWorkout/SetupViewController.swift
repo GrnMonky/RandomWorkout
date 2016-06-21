@@ -88,7 +88,8 @@ class SetupViewController: UIViewController {
         }
         else
         {
-            EndTimeLbl.text = (Int)((StopTimePicker.date.timeIntervalSinceDate(NSDate())/60)).description + " mins"
+            //EndTimeLbl.text = (Int)((StopTimePicker.date.timeIntervalSinceDate(NSDate())/60)).description + " mins"
+            Update()
             StopTimePicker.userInteractionEnabled = true
             StopTimePicker.alpha = 1;
         }
