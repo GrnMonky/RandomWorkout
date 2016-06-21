@@ -173,9 +173,9 @@ class WorkoutViewController: UIViewController {
             if CheckWorkoutComplete() {
                 return
             }
-            audioPlayer.play()
+            //audioPlayer.play()
             MoveTime = Double(CurrentSettings.PrepTime)
-            beep = CurrentSettings.PrepTime
+            beep = CurrentSettings.PrepTime > 5 ? 5 : CurrentSettings.PrepTime
             NextMoveLbl.text = "Up next: \(NextMove!.Name)"
             SpeakMove(NextMove!)
             State = WorkoutState.Preping
