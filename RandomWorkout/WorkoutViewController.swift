@@ -45,6 +45,7 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var TimeValLbl: UILabel!
     @IBOutlet weak var WeightValLbl: UILabel!
     @IBOutlet weak var ImageView: UIImageView!
+    @IBOutlet weak var NextMoveLbl: UILabel!
     
     @IBOutlet weak var HarderBtn: UIButton!
     @IBOutlet weak var NeutralBtn: UIButton!
@@ -72,7 +73,7 @@ class WorkoutViewController: UIViewController {
         
         //self.FiveMinuteTimer = NSTimer.scheduledTimerWithTimeInterval(60 * 5, target: self, selector: Selector("sayTime"), userInfo: nil, repeats: true)
         
-        let dummyMove = Move()
+        let dummyMove = Move(name: "Warm Up")
         dummyMove.Time = 0
         dummyMove.Weight = 0
         CurrentMove = dummyMove
@@ -166,20 +167,23 @@ class WorkoutViewController: UIViewController {
     func UpdateState(){
         switch(State){
         case .InMove:
+            //Go to preping
             if CheckWorkoutComplete() {
                 return
             }
             audioPlayer.play()
             MoveTime = 5
             beep = 5
-            CurrentMoveLbl.text = "Up next: \(NextMove!.Name)"
+            NextMoveLbl.text = "Up next: \(NextMove!.Name)"
             SpeakMove(NextMove!)
             State = WorkoutState.Preping
             break
         case .Preping:
+            //Go to move
             halfway = false
             CurrentMove = NextMove!
             MoveTime = Double(NextMove!.Time)
+            NextMoveLbl.text = ""
             NextMove = ChooseNextMove()
             if NextMove == nil{
                 Done()
