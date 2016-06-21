@@ -46,6 +46,7 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigatio
         TimeDisplay.text = String(_move.Time)
         TimeStepper.value = Double(_move.Time)
         Tags = _move.Tags
+        ImageView.image = _move.Media
     }
     
     @IBAction func editImageClicked(sender: AnyObject) {
@@ -111,6 +112,7 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigatio
         _move.Time = Int(TimeStepper.value)
         _move.Name = NameTxtFld.text!
         _move.Tags = Tags
+        _move.Media = ImageView.image
         
         if(Index == -1)
         {

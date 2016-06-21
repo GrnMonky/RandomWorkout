@@ -168,6 +168,7 @@
                                 <rect key="frame" x="497" y="429" width="79" height="30"/>
                                 <color key="backgroundColor" red="0.99288137335526316" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
                                 <state key="normal" title="+15 s">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -329,6 +330,7 @@
                         <outlet property="CurrentMoveLbl" destination="DSN-wU-aCR" id="X8G-AL-F7E"/>
                         <outlet property="EasierBtn" destination="yTn-jy-LQV" id="HR8-li-fX5"/>
                         <outlet property="HarderBtn" destination="ATX-Do-W64" id="FJZ-AM-tux"/>
+                        <outlet property="ImageView" destination="gDZ-Md-eRb" id="FeS-rN-z1z"/>
                         <outlet property="MoveTimeLbl" destination="275-iL-nul" id="XP6-aX-6II"/>
                         <outlet property="NeutralBtn" destination="6SP-AN-c4A" id="KAD-NO-eAf"/>
                         <outlet property="TimeValLbl" destination="OB0-lH-KPo" id="Z4d-bW-wAE"/>

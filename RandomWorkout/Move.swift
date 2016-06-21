@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /*var Moves : [Move] {
     get{
@@ -115,6 +116,7 @@ class Move: NSObject, NSCoding {
     var Weight:Int = 0
     var Tags:[String] = [String]()
     var Removed = false
+    var Media:UIImage?
     
     // MARK: Archiving Paths
     
@@ -131,6 +133,7 @@ class Move: NSObject, NSCoding {
         static let weightKey = "weight"
         static let removeKey = "removed"
         static let tagsKey = "tags"
+        static let mediaKey = "media"
     }
     
     // MARK: Initialization
@@ -161,6 +164,7 @@ class Move: NSObject, NSCoding {
         aCoder.encodeInteger(Weight, forKey: PropertyKey.weightKey)
         aCoder.encodeBool(Removed, forKey: PropertyKey.removeKey)
         aCoder.encodeObject(Tags, forKey: PropertyKey.tagsKey)
+        aCoder.encodeObject(Media, forKey: PropertyKey.mediaKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -180,6 +184,7 @@ class Move: NSObject, NSCoding {
         
         self.Tags = aDecoder.decodeObjectForKey(PropertyKey.tagsKey) as! [String]
         
+        self.Media = aDecoder.decodeObjectForKey(PropertyKey.mediaKey) as? UIImage
     }
     
 }

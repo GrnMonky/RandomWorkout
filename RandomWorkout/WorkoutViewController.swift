@@ -44,6 +44,7 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var MoveTimeLbl: UILabel!
     @IBOutlet weak var TimeValLbl: UILabel!
     @IBOutlet weak var WeightValLbl: UILabel!
+    @IBOutlet weak var ImageView: UIImageView!
     
     @IBOutlet weak var HarderBtn: UIButton!
     @IBOutlet weak var NeutralBtn: UIButton!
@@ -97,6 +98,7 @@ class WorkoutViewController: UIViewController {
             CurrentMoveLbl.text = _currentMove.Name
             TimeValLbl.text = _currentMove.Time.description
             WeightValLbl.text = _currentMove.Weight.description
+            ImageView.image = _currentMove.Media
         }
     }
     
