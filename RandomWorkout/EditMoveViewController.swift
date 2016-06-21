@@ -26,6 +26,8 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigatio
     @IBOutlet weak var NameTxtFld: UITextField!
     @IBOutlet weak var TimeDisplay: UILabel!
     @IBOutlet weak var TimeStepper: UIStepper!
+    @IBOutlet weak var WeightDisplay: UILabel!
+    @IBOutlet weak var WeightStepper: UIStepper!
     @IBOutlet weak var NavigationBar: UINavigationItem!
     @IBOutlet weak var ImageView: UIImageView!
     
@@ -45,6 +47,8 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigatio
         NavigationBar.title = _move.Name
         TimeDisplay.text = String(_move.Time)
         TimeStepper.value = Double(_move.Time)
+        WeightDisplay.text = String(_move.Weight)
+        WeightStepper.value = Double(_move.Weight)
         Tags = _move.Tags
         ImageView.image = _move.Media
     }
@@ -99,6 +103,10 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigatio
     
     @IBAction func TimeChanged(sender: UIStepper) {
         TimeDisplay.text = String(Int(TimeStepper.value))
+    }
+    
+    @IBAction func WeightChanged(sender: UIStepper) {
+        WeightDisplay.text = String(Int(WeightStepper.value))
     }
     
     @IBAction func DoneAction(sender: AnyObject){

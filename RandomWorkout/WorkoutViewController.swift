@@ -41,15 +41,15 @@ class WorkoutViewController: UIViewController {
     
     @IBOutlet weak var CurrentMoveLbl: UILabel!
     @IBOutlet weak var TotalTimeLbl: UILabel!
-    @IBOutlet weak var MoveTimeLbl: UILabel!
-    @IBOutlet weak var TimeValLbl: UILabel!
-    @IBOutlet weak var WeightValLbl: UILabel!
     @IBOutlet weak var ImageView: UIImageView!
     @IBOutlet weak var NextMoveLbl: UILabel!
+    @IBOutlet weak var MoveTimeLbl: UILabel!
+    @IBOutlet weak var SetMoveTimeLbl: UILabel!
+    @IBOutlet weak var MoveTimeStepper: UIStepper!
+    @IBOutlet weak var MoveWeightLbl: UILabel!
+    @IBOutlet weak var MoveWeightStepper: UIStepper!
     
-    @IBOutlet weak var HarderBtn: UIButton!
     @IBOutlet weak var NeutralBtn: UIButton!
-    @IBOutlet weak var EasierBtn: UIButton!
 
     required init?(coder aDecoder: NSCoder){
         //fatalError("init(coder:) has not been implemented")
@@ -97,8 +97,10 @@ class WorkoutViewController: UIViewController {
             _currentMove = newValue
             
             CurrentMoveLbl.text = _currentMove.Name
-            TimeValLbl.text = _currentMove.Time.description
-            WeightValLbl.text = _currentMove.Weight.description
+            MoveWeightStepper.value = Double(_currentMove.Weight)
+            MoveTimeStepper.value = Double(_currentMove.Time)
+            SetMoveTimeLbl.text = _currentMove.Time.description
+            MoveWeightLbl.text = _currentMove.Weight.description
             ImageView.image = _currentMove.Media
         }
     }
@@ -228,39 +230,14 @@ class WorkoutViewController: UIViewController {
         synth.speakUtterance(myUtterance)
     }
     
-    
-    //To make the move harder add 15 Seconds
-    @IBAction func HarderClicked(sender: AnyObject) {
-        if( CurrentMove.Time < 120){
-            CurrentMove.Time += 15;
-            TimeValLbl.text = CurrentMove.Time.description
-        }
-        
-        //DisableAllBtns()
+    @IBAction func MoveTimeChanged(sender: UIStepper) {
+        CurrentMove.Time = Int(MoveTimeStepper.value)
+        SetMoveTimeLbl.text = CurrentMove.Time.description
     }
-    
-    //To make the move easier subtract 15 Seconds
-    @IBAction func EasierClicked(sender: AnyObject) {
-        if( CurrentMove.Time > 15){
-            CurrentMove.Time -= 15
-            TimeValLbl.text = CurrentMove.Time.description
-        }
-        
-        //DisableAllBtns()
-    }
-    
-    @IBAction func EasierWeightClicked(sender: AnyObject) {
-        if( CurrentMove.Weight > 0){
-            CurrentMove.Weight -= 5
-            WeightValLbl.text = CurrentMove.Weight.description
-        }
-    }
-    
-    @IBAction func HarderWeightClicked(sender: AnyObject) {
-        if( CurrentMove.Weight < 60){
-            CurrentMove.Weight += 5
-            WeightValLbl.text = CurrentMove.Weight.description
-        }
+
+    @IBAction func WeightTimeChanged(sender: AnyObject) {
+        CurrentMove.Weight = Int(MoveWeightStepper.value)
+        MoveWeightLbl.text = CurrentMove.Weight.description
     }
     
     @IBAction func NeutralClicked(sender: AnyObject) {
