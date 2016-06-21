@@ -52,6 +52,16 @@
                ReferencedContainer = "container:RandomWorkout.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4A937F731D1178BF00317984"
+               BuildableName = "RandomWorkoutUITests.xctest"
+               BlueprintName = "RandomWorkoutUITests"
+               ReferencedContainer = "container:RandomWorkout.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class EditMoveViewController: UIViewController, UITextFieldDelegate {
+class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     
     
@@ -20,12 +20,14 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate {
         get{ return arrayReference.array }
         set(val){ arrayReference.array = val }
     }
+    var imagePicker = UIImagePickerController()
     
     
     @IBOutlet weak var NameTxtFld: UITextField!
     @IBOutlet weak var TimeDisplay: UILabel!
     @IBOutlet weak var TimeStepper: UIStepper!
     @IBOutlet weak var NavigationBar: UINavigationItem!
+    @IBOutlet weak var ImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,29 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate {
         TimeDisplay.text = String(_move.Time)
         TimeStepper.value = Double(_move.Time)
         Tags = _move.Tags
+    }
+    
+    @IBAction func editImageClicked(sender: AnyObject) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum){
+            //print("Button capture")
+            
+            
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum;
+            imagePicker.allowsEditing = false
+            
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+            
+        })
+    
+        ImageView.image = image
+        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.

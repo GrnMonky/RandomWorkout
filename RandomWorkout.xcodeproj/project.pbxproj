@@ -12,10 +12,14 @@
 		4A45FEDC1A6B53FB00C5DFDF /* MovesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45FEDB1A6B53FB00C5DFDF /* MovesViewController.swift */; };
 		4A5D56C61C2119E400EB68D6 /* EditMoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D56C51C2119E400EB68D6 /* EditMoveViewController.swift */; };
 		4A5D56C81C211C8100EB68D6 /* button.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D56C71C211C8000EB68D6 /* button.wav */; };
+		4A937F6E1D11760E00317984 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */; };
+		4A937F6F1D11761B00317984 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC9E9D21C35B8BA00D7EEC2 /* HealthKit.framework */; };
+		4A937F771D1178C000317984 /* RandomWorkoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A937F761D1178C000317984 /* RandomWorkoutUITests.swift */; };
+		4A937F7E1D118F3300317984 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */; };
+		4A937F7F1D118F4000317984 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC9E9D21C35B8BA00D7EEC2 /* HealthKit.framework */; };
 		4A9EF0C61B93888400D5A72D /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9EF0C51B93888400D5A72D /* Tag.swift */; };
 		4A9FAFE41C4ADE5700028CF1 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FAFE31C4ADE5700028CF1 /* Workout.swift */; };
 		4AA871621C4186A800A7D72F /* Tags.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AA871601C4186A800A7D72F /* Tags.storyboard */; };
-		4AABB7CC1A68B84A00D60A35 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */; };
 		4ABE67BE1A520A16000024ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67BD1A520A16000024ED /* AppDelegate.swift */; };
 		4ABE67C01A520A16000024ED /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67BF1A520A16000024ED /* SetupViewController.swift */; };
 		4ABE67C51A520A16000024ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE67C31A520A16000024ED /* Main.storyboard */; };
@@ -26,12 +30,18 @@
 		4ABE67E31A5227D3000024ED /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67E21A5227D3000024ED /* WorkoutViewController.swift */; };
 		4ABE67E51A538E8F000024ED /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE67E41A538E8F000024ED /* Helpers.swift */; };
 		4ABE67EC1A54CEAD000024ED /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE67EB1A54CEAD000024ED /* beep.wav */; };
-		4AC9E9D31C35B8BA00D7EEC2 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC9E9D21C35B8BA00D7EEC2 /* HealthKit.framework */; };
 		4AC9E9D51C35BAE700D7EEC2 /* HealthKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9E9D41C35BAE700D7EEC2 /* HealthKitHelper.swift */; };
 		4AC9E9D71C37210600D7EEC2 /* EditTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9E9D61C37210600D7EEC2 /* EditTagsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4A937F791D1178C000317984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4ABE67B01A520A16000024ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4ABE67B71A520A16000024ED;
+			remoteInfo = RandomWorkout;
+		};
 		4ABE67D01A520A16000024ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4ABE67B01A520A16000024ED /* Project object */;
@@ -47,6 +57,9 @@
 		4A45FEDB1A6B53FB00C5DFDF /* MovesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovesViewController.swift; sourceTree = "<group>"; };
 		4A5D56C51C2119E400EB68D6 /* EditMoveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMoveViewController.swift; sourceTree = "<group>"; };
 		4A5D56C71C211C8000EB68D6 /* button.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button.wav; sourceTree = "<group>"; };
+		4A937F741D1178BF00317984 /* RandomWorkoutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RandomWorkoutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A937F761D1178C000317984 /* RandomWorkoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomWorkoutUITests.swift; sourceTree = "<group>"; };
+		4A937F781D1178C000317984 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A9EF0C51B93888400D5A72D /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		4A9FAFE31C4ADE5700028CF1 /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		4AA871611C4186A800A7D72F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Tags.storyboard; sourceTree = "<group>"; };
@@ -72,12 +85,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4A937F711D1178BF00317984 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A937F7F1D118F4000317984 /* HealthKit.framework in Frameworks */,
+				4A937F7E1D118F3300317984 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4ABE67B51A520A16000024ED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AABB7CC1A68B84A00D60A35 /* AVFoundation.framework in Frameworks */,
-				4AC9E9D31C35B8BA00D7EEC2 /* HealthKit.framework in Frameworks */,
+				4A937F6F1D11761B00317984 /* HealthKit.framework in Frameworks */,
+				4A937F6E1D11760E00317984 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +124,15 @@
 				4AC9E9D61C37210600D7EEC2 /* EditTagsViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4A937F751D1178C000317984 /* RandomWorkoutUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4A937F761D1178C000317984 /* RandomWorkoutUITests.swift */,
+				4A937F781D1178C000317984 /* Info.plist */,
+			);
+			path = RandomWorkoutUITests;
 			sourceTree = "<group>";
 		};
 		4AA871681C418E2100A7D72F /* Storyboards */ = {
@@ -131,6 +162,7 @@
 				4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */,
 				4ABE67BA1A520A16000024ED /* RandomWorkout */,
 				4ABE67D21A520A16000024ED /* RandomWorkoutTests */,
+				4A937F751D1178C000317984 /* RandomWorkoutUITests */,
 				4ABE67B91A520A16000024ED /* Products */,
 			);
 			sourceTree = "<group>";
@@ -140,6 +172,7 @@
 			children = (
 				4ABE67B81A520A16000024ED /* RandomWorkout.app */,
 				4ABE67CF1A520A16000024ED /* RandomWorkoutTests.xctest */,
+				4A937F741D1178BF00317984 /* RandomWorkoutUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,6 +241,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4A937F731D1178BF00317984 /* RandomWorkoutUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A937F7B1D1178C000317984 /* Build configuration list for PBXNativeTarget "RandomWorkoutUITests" */;
+			buildPhases = (
+				4A937F701D1178BF00317984 /* Sources */,
+				4A937F711D1178BF00317984 /* Frameworks */,
+				4A937F721D1178BF00317984 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A937F7A1D1178C000317984 /* PBXTargetDependency */,
+			);
+			name = RandomWorkoutUITests;
+			productName = RandomWorkoutUITests;
+			productReference = 4A937F741D1178BF00317984 /* RandomWorkoutUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		4ABE67B71A520A16000024ED /* RandomWorkout */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4ABE67D91A520A16000024ED /* Build configuration list for PBXNativeTarget "RandomWorkout" */;
@@ -250,10 +301,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0710;
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Ginkgo;
 				TargetAttributes = {
+					4A937F731D1178BF00317984 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 4ABE67B71A520A16000024ED;
+					};
 					4ABE67B71A520A16000024ED = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = TUD3E4WJFE;
@@ -284,11 +339,19 @@
 			targets = (
 				4ABE67B71A520A16000024ED /* RandomWorkout */,
 				4ABE67CE1A520A16000024ED /* RandomWorkoutTests */,
+				4A937F731D1178BF00317984 /* RandomWorkoutUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4A937F721D1178BF00317984 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4ABE67B61A520A16000024ED /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,6 +375,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4A937F701D1178BF00317984 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A937F771D1178C000317984 /* RandomWorkoutUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4ABE67B41A520A16000024ED /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -343,6 +414,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4A937F7A1D1178C000317984 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4ABE67B71A520A16000024ED /* RandomWorkout */;
+			targetProxy = 4A937F791D1178C000317984 /* PBXContainerItemProxy */;
+		};
 		4ABE67D11A520A16000024ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4ABE67B71A520A16000024ED /* RandomWorkout */;
@@ -380,6 +456,39 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4A937F7C1D1178C000317984 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = RandomWorkoutUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = UITests.RandomWorkoutUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = RandomWorkout;
+			};
+			name = Debug;
+		};
+		4A937F7D1D1178C000317984 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = RandomWorkoutUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = UITests.RandomWorkoutUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = RandomWorkout;
+			};
+			name = Release;
+		};
 		4ABE67D71A520A16000024ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -529,6 +638,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4A937F7B1D1178C000317984 /* Build configuration list for PBXNativeTarget "RandomWorkoutUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A937F7C1D1178C000317984 /* Debug */,
+				4A937F7D1D1178C000317984 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4ABE67B31A520A16000024ED /* Build configuration list for PBXProject "RandomWorkout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
