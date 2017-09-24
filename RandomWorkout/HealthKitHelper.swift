@@ -40,29 +40,29 @@ class HealthKitManager{
         }
     }
     
-    func SaveBasicWorkout(start:NSDate, end:NSDate, interval:NSTimeInterval){
+    func SaveBasicWorkout(start:NSDate, end:NSDate, interval:TimeInterval){
         
         guard healthKitAvailable else{ return }
         
         var workout: HKWorkout? = nil
         
         if #available(iOS 9.0, *) {
-            workout = HKWorkout(activityType: .Other, startDate: start, endDate: end, duration: interval, totalEnergyBurned: nil, totalDistance: nil, device: nil, metadata: nil)
+            workout = HKWorkout(activityType: .other, start: start as Date, end: end as Date, duration: interval, totalEnergyBurned: nil, totalDistance: nil, device: nil, metadata: nil)
         } else {
-            workout = HKWorkout(activityType: .Other, startDate: start, endDate: end)
+            workout = HKWorkout(activityType: .other, start: start as Date, end: end as Date)
         }
         
         // Save the workout before adding detailed samples.
-        healthKitStore.saveObject(workout!) { (success, error) -> Void in
+        healthKitStore.save(workout!) { (success, error) -> Void in
             guard success else {
                 // Perform proper error handling here...
                 fatalError("*** An error occurred while saving the " +
-                    "workout: \(error?.localizedDescription)")
+                    "workout: \(String(describing: error?.localizedDescription))")
             }
         }
     }
     
-    func authorizeHealthKit(completion: ((success:Bool, error:NSError!) -> Void)!)
+    func authorizeHealthKit(completion: ((_ success:Bool,_ error:Error?) -> Void)!)
     {
         // 1. Set the types you want to read from HK Store
         /*let healthKitTypesToRead = Set(arrayLiteral:
@@ -89,13 +89,7 @@ class HealthKitManager{
         
         
         // 4.  Request HealthKit authorization
-        healthKitStore.requestAuthorizationToShareTypes(healthKitTypesToWrite, readTypes: nil) { (success, error) -> Void in
-            
-            if( completion != nil )
-            {
-                completion(success:success,error:error)
-            }
-        }
+            healthKitStore.requestAuthorization(toShare: healthKitTypesToWrite, read: nil, completion: completion)
         }
         else
         {

@@ -56,82 +56,82 @@ UITableViewDataSource, UITableViewDelegate {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         //saveMoves()
         tableView.reloadData()
     }
     
-    func tableView(tableView: UITableView,
+    func tableView(_ tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int {
             
             return Moves.count
             
     }
     
-    func tableView(tableView: UITableView,
-        cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell{
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("Cell",
-                forIndexPath: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell",
+                                                 for: indexPath as IndexPath) as! TableViewCell
             
             
             
             cell.textLabel!.text = Moves[indexPath.row].Name
-            cell.Switch.on = !Moves[indexPath.row].Removed
+        cell.Switch.isOn = !Moves[indexPath.row].Removed
             cell.Content = Moves[indexPath.row]
             
             return cell
             
     }
     
-    func tableView(tableView: UITableView,
-        editingStyleForRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView,
+                   editingStyleForRowAt indexPath: IndexPath)
         -> UITableViewCellEditingStyle{
-            return .Delete
+            return .delete
     }
     
-    override func setEditing(editing: Bool, animated: Bool) {
+    override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView!.setEditing(editing, animated: animated)
     }
 
     
-    func tableView(tableView: UITableView,
-        commitEditingStyle editingStyle: UITableViewCellEditingStyle,
-        forRowAtIndexPath indexPath: NSIndexPath){
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCellEditingStyle,
+                   forRowAt indexPath: IndexPath){
             
-            if editingStyle == .Delete{
+        if editingStyle == .delete{
                 /* First remove this object from the source */
-                Moves.removeAtIndex(indexPath.row)
-               tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
+            Moves.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath as IndexPath], with: .left)
             }
             
     }
     
-    func tableView(tableView: UITableView,
-        didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath)
     {
-        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("EditMoveViewController") as! EditMoveViewController
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "EditMoveViewController") as! EditMoveViewController
         controller.Index = indexPath.row
-        self.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+        self.modalTransitionStyle = UIModalTransitionStyle.coverVertical
         // Cover Vertical is necessary for CurrentContext
-        self.modalPresentationStyle = .CurrentContext
+        self.modalPresentationStyle = .currentContext
         
         
-        self.presentViewController(controller, animated: true, completion: nil)
+        self.present(controller, animated: true, completion: nil)
     }
     
-    @IBAction func showAlertTapped(sender: AnyObject) {
+    @IBAction func showAlertTapped(_ sender: AnyObject) {
         //Create the AlertController
-        let myAlertController: UIAlertController = UIAlertController(title: "Hey!", message: "Are You sure you want to delete every move?", preferredStyle: .Alert)
+        let myAlertController: UIAlertController = UIAlertController(title: "Hey!", message: "Are You sure you want to delete every move?", preferredStyle: .alert)
         
         //Create and add the Cancel action
-        let cancelAction: UIAlertAction = UIAlertAction(title: "No", style: .Cancel) { action -> Void in
+        let cancelAction: UIAlertAction = UIAlertAction(title: "No", style: .cancel) { action -> Void in
             //Do some stuff
         }
         myAlertController.addAction(cancelAction)
         //Create and an option action
-        let nextAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
+        let nextAction: UIAlertAction = UIAlertAction(title: "Yes", style: .default) { action -> Void in
             
             
             Moves = [Move]()
@@ -141,14 +141,13 @@ UITableViewDataSource, UITableViewDelegate {
         
         
         //Present the AlertController
-        self.presentViewController(myAlertController, animated: true, completion: nil)
+        self.present(myAlertController, animated: true, completion: nil)
     }
     
     
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let EditView = segue.destinationViewController as! EditMoveViewController
+        let EditView = segue.destination as! EditMoveViewController
         
         EditView.Index = -1
         tableView.reloadData()

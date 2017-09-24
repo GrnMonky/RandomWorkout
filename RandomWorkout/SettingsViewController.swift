@@ -19,7 +19,7 @@ class SettingsViewController: UIViewController {
         PrepTimeDisplay.text = String(CurrentSettings.PrepTime)
     }
     
-    @IBAction func PrepTimeStepperChanged(sender: UIStepper) {
+    @IBAction func PrepTimeStepperChanged(_ sender: UIStepper) {
         
         CurrentSettings.PrepTime = Int(PrepTimeStepper.value)
         PrepTimeDisplay.text = String(CurrentSettings.PrepTime)

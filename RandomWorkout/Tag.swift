@@ -25,17 +25,17 @@ func GenerateTags(){
 }
 
 class Tags{
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("Tags")
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("Tags")
 }
 
 func saveTags() {
-    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(GlobalTags, toFile: Tags.ArchiveURL.path!)
+    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(GlobalTags, toFile: Tags.ArchiveURL.path)
     if !isSuccessfulSave {
         print("Failed to save tags...", terminator: "")
     }
 }
 
 func loadTags() -> [String]? {
-    return NSKeyedUnarchiver.unarchiveObjectWithFile(Tags.ArchiveURL.path!) as? [String]
+    return NSKeyedUnarchiver.unarchiveObject(withFile: Tags.ArchiveURL.path) as? [String]
 }

@@ -19,13 +19,13 @@ class TableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    @IBAction func SwitchChanged(sender: AnyObject) {
-        Content!.Removed = !Switch.on
+    @IBAction func SwitchChanged(_ sender: AnyObject) {
+        Content!.Removed = !Switch.isOn
     }
 }

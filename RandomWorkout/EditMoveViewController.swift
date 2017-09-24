@@ -53,21 +53,21 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigatio
         ImageView.image = _move.Media
     }
     
-    @IBAction func editImageClicked(sender: AnyObject) {
+    @IBAction func editImageClicked(_ sender: AnyObject) {
         
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
             //print("Button capture")
             
             imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
+            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
             imagePicker.allowsEditing = false
             
-            self.presentViewController(imagePicker, animated: true, completion: nil)
+            self.present(imagePicker, animated: true, completion: nil)
         }
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
-        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+        self.dismiss(animated: true, completion: { () -> Void in
             
         })
     
@@ -75,7 +75,7 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigatio
         
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
     {
         textField.resignFirstResponder()
         return true;
@@ -86,30 +86,30 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigatio
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let NavView = segue.destinationViewController as! UINavigationController
+        let NavView = segue.destination as! UINavigationController
         let TagView = NavView.childViewControllers.first! as! EditTagsViewController
         
         TagView.title = "\(NameTxtFld.text!) Tags"
         TagView.TagsArray = arrayReference
     }
     
-    @IBAction func CancelAction(sender: AnyObject){
+    @IBAction func CancelAction(_ sender: AnyObject){
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     
-    @IBAction func TimeChanged(sender: UIStepper) {
+    @IBAction func TimeChanged(_ sender: UIStepper) {
         TimeDisplay.text = String(Int(TimeStepper.value))
     }
     
-    @IBAction func WeightChanged(sender: UIStepper) {
+    @IBAction func WeightChanged(_ sender: UIStepper) {
         WeightDisplay.text = String(Int(WeightStepper.value))
     }
     
-    @IBAction func DoneAction(sender: AnyObject){
+    @IBAction func DoneAction(_ sender: AnyObject){
         
         Done()
     }
@@ -123,9 +123,9 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigatio
         
         if(Index == -1)
         {
-            Moves.insert(_move, atIndex: 0)
+            Moves.insert(_move, at: 0)
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     

@@ -13,15 +13,15 @@ import AVFoundation
 
 class WorkoutViewController: UIViewController {
     
-    var beepSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("beep", ofType: "wav")!)
-    var buttonSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("button", ofType: "wav")!)
+    var beepSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "beep", ofType: "wav")!)
+    var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "button", ofType: "wav")!)
     
     var LocalMoves = [Move]()
     var EndTime = NSDate()
     var NextMove:Move? = Move()
-    var TotalTimer = NSTimer()
-    var SecondsTimer = NSTimer()
-    var FiveMinuteTimer = NSTimer()
+    var TotalTimer = Timer()
+    var SecondsTimer = Timer()
+    var FiveMinuteTimer = Timer()
     var TotalTime:Double = 0.0
     var MoveTime:Double = 0.0
     var State:WorkoutState = WorkoutState.InMove
@@ -53,9 +53,9 @@ class WorkoutViewController: UIViewController {
 
     required init?(coder aDecoder: NSCoder){
         //fatalError("init(coder:) has not been implemented")
-        audioPlayer = try! AVAudioPlayer(contentsOfURL: beepSound)
+        audioPlayer = try! AVAudioPlayer(contentsOf: beepSound as URL)
         audioPlayer.prepareToPlay()
-        buttonPlayer = try! AVAudioPlayer(contentsOfURL: buttonSound)
+        buttonPlayer = try! AVAudioPlayer(contentsOf: buttonSound as URL)
         buttonPlayer.prepareToPlay()
         super.init(coder: aDecoder)
     }
@@ -63,9 +63,9 @@ class WorkoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.TotalTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(WorkoutViewController.update), userInfo: nil, repeats: true)
+        self.TotalTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(WorkoutViewController.update), userInfo: nil, repeats: true)
         start = NSDate()
-        UIApplication.sharedApplication().idleTimerDisabled = true
+        UIApplication.shared.isIdleTimerDisabled = true
         beep = 5
         
         //self.SecondsTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("beep"), userInfo: nil, repeats: true)
@@ -82,9 +82,9 @@ class WorkoutViewController: UIViewController {
         startTime = NSDate()
     }
     
-    override func viewDidDisappear(animated : Bool){
-        HealthKitHelper.SaveBasicWorkout(startTime, end: NSDate(), interval: TotalTime)
-        UIApplication.sharedApplication().idleTimerDisabled = false
+    override func viewDidDisappear(_ animated : Bool){
+        HealthKitHelper.SaveBasicWorkout(start: startTime, end: NSDate(), interval: TotalTime)
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     
     
@@ -112,7 +112,7 @@ class WorkoutViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func update(){
+    @objc func update(){
         let diff = -start.timeIntervalSinceNow
         start = NSDate()
         TotalTimeLbl.text = Helpers.ConvertFloatToTime(TotalTime)
@@ -140,10 +140,10 @@ class WorkoutViewController: UIViewController {
     func CheckWorkoutComplete() -> Bool{
         if(!CurrentWorkout.Infinite)
         {
-            let result = NSDate().compare(EndTime)
-            if(result == NSComparisonResult.OrderedDescending || result ==  NSComparisonResult.OrderedSame){
+            let result = NSDate().compare(EndTime as Date)
+            if(result == ComparisonResult.orderedDescending || result ==  ComparisonResult.orderedSame){
                 
-                Speak("Workout Completed")
+                Speak(string: "Workout Completed")
                 Done()
                 return true
             }
@@ -163,7 +163,7 @@ class WorkoutViewController: UIViewController {
     var FiveMinutes = 0
     func sayTime(){
         FiveMinutes += 5
-        Speak("\(FiveMinutes) minutes")
+        Speak(string: "\(FiveMinutes) minutes")
     }
     
     func UpdateState(){
@@ -177,7 +177,7 @@ class WorkoutViewController: UIViewController {
             MoveTime = Double(CurrentSettings.PrepTime)
             beep = CurrentSettings.PrepTime > 5 ? 5 : CurrentSettings.PrepTime
             NextMoveLbl.text = "Up next: \(NextMove!.Name)"
-            SpeakMove(NextMove!)
+            SpeakMove(MoveToSpeak: NextMove!)
             State = WorkoutState.Preping
             break
         case .Preping:
@@ -196,12 +196,12 @@ class WorkoutViewController: UIViewController {
         }
     }
     
-    @IBAction func Skip(sender: AnyObject)
+    @IBAction func Skip(_ sender: AnyObject)
     {
         UpdateState()
     }
     
-    @IBAction func DoneAction(sender: AnyObject){
+    @IBAction func DoneAction(_ sender: AnyObject){
         
         Done()
     }
@@ -213,34 +213,34 @@ class WorkoutViewController: UIViewController {
         FiveMinuteTimer.invalidate()
         previousMoves = [Move]()
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func SpeakMove(MoveToSpeak:Move)
     {
         myUtterance = AVSpeechUtterance(string: MoveToSpeak.Name)
         myUtterance.rate = 0.5
-        synth.speakUtterance(myUtterance)
+        synth.speak(myUtterance)
     }
     
     func Speak(string:String)
     {
         myUtterance = AVSpeechUtterance(string: string)
         myUtterance.rate = 0.5
-        synth.speakUtterance(myUtterance)
+        synth.speak(myUtterance)
     }
     
-    @IBAction func MoveTimeChanged(sender: UIStepper) {
+    @IBAction func MoveTimeChanged(_ sender: UIStepper) {
         CurrentMove.Time = Int(MoveTimeStepper.value)
         SetMoveTimeLbl.text = CurrentMove.Time.description
     }
 
-    @IBAction func WeightTimeChanged(sender: AnyObject) {
+    @IBAction func WeightTimeChanged(_ sender: AnyObject) {
         CurrentMove.Weight = Int(MoveWeightStepper.value)
         MoveWeightLbl.text = CurrentMove.Weight.description
     }
     
-    @IBAction func NeutralClicked(sender: AnyObject) {
+    @IBAction func NeutralClicked(_ sender: AnyObject) {
         CurrentMove.Removed = true
         //DisableAllBtns()
     }
@@ -265,7 +265,7 @@ class WorkoutViewController: UIViewController {
         
         var movesDoable = [Move]()
         
-        if !(LocalMoves.contains({!$0.Removed})){
+        if !(LocalMoves.contains(where: {!$0.Removed})){
                 return nil
         } else if LocalMoves.count == 1 {
             

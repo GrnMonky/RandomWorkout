@@ -22,6 +22,7 @@ func GenerateWorkout(){
 }
 
 class Workout: NSObject, NSCoding {
+    
     // MARK: Properties
     
     var MoveTagsOn = false
@@ -34,8 +35,8 @@ class Workout: NSObject, NSCoding {
     
     // MARK: Archiving Paths
     
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("Workout")
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("Workout")
     
     // MARK: Types
     
@@ -56,11 +57,11 @@ class Workout: NSObject, NSCoding {
     
     // MARK: NSCoding
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeBool(MoveTagsOn, forKey: PropertyKey.moveTagsOnKey)
-        aCoder.encodeInteger(TimeDiff, forKey: PropertyKey.timeDiffKey)
-        aCoder.encodeBool(Infinite, forKey: PropertyKey.infiniteKey)
-        aCoder.encodeObject(WorkoutTags, forKey: PropertyKey.workoutTagsKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(MoveTagsOn, forKey: PropertyKey.moveTagsOnKey)
+        aCoder.encode(TimeDiff, forKey: PropertyKey.timeDiffKey)
+        aCoder.encode(Infinite, forKey: PropertyKey.infiniteKey)
+        aCoder.encode(WorkoutTags, forKey: PropertyKey.workoutTagsKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -71,13 +72,13 @@ class Workout: NSObject, NSCoding {
         
         WorkoutTagsReference = ArrayWrapper<String>()
         
-        self.MoveTagsOn = aDecoder.decodeBoolForKey(PropertyKey.moveTagsOnKey)
+        self.MoveTagsOn = aDecoder.decodeBool(forKey: PropertyKey.moveTagsOnKey)
         
-        self.TimeDiff = aDecoder.decodeIntegerForKey(PropertyKey.timeDiffKey)
+        self.TimeDiff = aDecoder.decodeInteger(forKey: PropertyKey.timeDiffKey)
         
-        self.Infinite = aDecoder.decodeBoolForKey(PropertyKey.infiniteKey)
+        self.Infinite = aDecoder.decodeBool(forKey: PropertyKey.infiniteKey)
         
-        self.WorkoutTags = aDecoder.decodeObjectForKey(PropertyKey.workoutTagsKey) as! [String]
+        self.WorkoutTags = aDecoder.decodeObject(forKey: PropertyKey.workoutTagsKey) as! [String]
     }
     
 }
@@ -91,12 +92,12 @@ func saveWorkout() {
     }catch {
         print(error)
     }*/
-    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(CurrentWorkout, toFile: Workout.ArchiveURL.path!)
+    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(CurrentWorkout, toFile: Workout.ArchiveURL.path)
     if !isSuccessfulSave {
         print("Failed to save workout...", terminator: "")
     }
 }
 
 func loadWorkout() -> Workout? {
-    return NSKeyedUnarchiver.unarchiveObjectWithFile(Workout.ArchiveURL.path!) as? Workout
+    return NSKeyedUnarchiver.unarchiveObject(withFile: Workout.ArchiveURL.path) as? Workout
 }

@@ -11,35 +11,35 @@ import AVFoundation
 
 class Helpers {
     
-    class func ConvertFloatToTimeMilli(time:Float) -> String{
+    class func ConvertFloatToTimeMilli(_ time:Float) -> String{
         let minutes = floor(time/60)
         let seconds = round(time - minutes * 60)
-        let milliseconds = round(time%1 * 100)
+        let milliseconds = round(time.truncatingRemainder(dividingBy: 1) * 100)
         return "\(AddZero(minutes)):\(AddZero(seconds)):\(AddZero(milliseconds))";
     }
     
-    class func ConvertFloatToTime(time:Float) -> String{
+    class func ConvertFloatToTime(_ time:Float) -> String{
         let minutes = floor(time/60)
         let seconds = round(time - minutes * 60)
         return "\(Int(minutes)):\(AddZero(seconds))";
     }
     
-    class func ConvertFloatToTimeMilli(time:Double) -> String{
+    class func ConvertFloatToTimeMilli(_ time:Double) -> String{
         let minutes = floor(time/60)
         let seconds = round(time - minutes * 60)
-        let milliseconds = round(time%1 * 100)
+        let milliseconds = round(time.truncatingRemainder(dividingBy: 1) * 100)
         return "\(AddZero(minutes)):\(AddZero(seconds)):\(AddZero(milliseconds))";
     }
     
-    class func ConvertFloatToTime(time:Double) -> String{
+    class func ConvertFloatToTime(_ time:Double) -> String{
         let minutes = floor(time/60)
         let seconds = round(time - minutes * 60)
         return "\(Int(minutes)):\(AddZero(seconds))";
     }
     
-    class func PlaySound(url:NSURL){
+    class func PlaySound(_ url:NSURL){
         
-        let audioPlayer = try? AVAudioPlayer(contentsOfURL: url)
+        let audioPlayer = try? AVAudioPlayer(contentsOf: url as URL)
         audioPlayer!.prepareToPlay()
         
         audioPlayer!.play()
@@ -51,7 +51,7 @@ class Helpers {
     
 }
 
-private func AddZero(time:Float) -> String{
+private func AddZero(_ time:Float) -> String{
     if(time < 10){
         
         return "0\(Int(time))"
@@ -60,7 +60,7 @@ private func AddZero(time:Float) -> String{
     return "\(Int(time))"
 }
 
-private func AddZero(time:Double) -> String{
+private func AddZero(_ time:Double) -> String{
     if(time < 10){
         
         return "0\(Int(time))"
@@ -69,7 +69,7 @@ private func AddZero(time:Double) -> String{
     return "\(Int(time))"
 }
 
-private func AddZero(time:Int) -> String{
+private func AddZero(_ time:Int) -> String{
     if(time < 10){
         
         return "0\(Int(time))"
@@ -85,12 +85,12 @@ extension Double {
         return "\(AddZero(Int(self)))"
     }
     
-    func Seconds() -> String {
-        return "\(AddZero(Int(round(self * 100)) % 100))"
+    mutating func Seconds() -> String {
+        return "\(AddZero(Int(Darwin.round(self * 100)) % 100))"
     }
     
-    func MinutesAndSeconds() -> String {
-        return "\(AddZero(Int(round(self * 100)) % 100))"
+    mutating func MinutesAndSeconds() -> String {
+        return "\(AddZero(Int(Darwin.round(self * 100)) % 100))"
     }
     
     init(minutes: Int, seconds: Int) {

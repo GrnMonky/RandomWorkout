@@ -29,13 +29,13 @@ class EditTagsViewController: UITableViewController {
         tableView!.setEditing(editing, animated: animated)
     }*/
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         //saveMoves()
         super.viewWillAppear(animated)
         
         for cell in tableView.visibleCells {
-            if cell.selected{
-                tableView(tableView, didSelectRowAtIndexPath: tableView.indexPathForCell(cell)!)
+            if cell.isSelected{
+                tableView(tableView, didSelectRowAt: tableView.indexPath(for: cell)!)
             }
         }
     }
@@ -49,7 +49,7 @@ class EditTagsViewController: UITableViewController {
         
     }*/
     
-    override func tableView(tableView: UITableView,
+    override func tableView(_ tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int {
             
             return GlobalTags.count
@@ -60,36 +60,37 @@ class EditTagsViewController: UITableViewController {
         return false
     }*/
     
-    override func tableView(tableView: UITableView,
-        cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell{
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("TagCell",
-                forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell",
+                                                 for: indexPath as IndexPath)
             
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
             
             cell.textLabel!.text = GlobalTags[indexPath.row]
             
             if let text = cell.textLabel!.text {
                 if CurrentTags.contains(text){
-                    tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
-                    tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+                    tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
+                    tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
                 }
             }
             
             return cell
     }
     
-    override func tableView(tableView: UITableView,
-        commitEditingStyle editingStyle: UITableViewCellEditingStyle,
-        forRowAtIndexPath indexPath: NSIndexPath){
+
+    override func tableView(_ tableView: UITableView,
+        commit editingStyle: UITableViewCellEditingStyle,
+        forRowAt indexPath: IndexPath){
         
-            if editingStyle == .Delete{
+        if editingStyle == .delete{
                 
                 removeTag(){ action -> Void in
                     let tag = GlobalTags[indexPath.row]
-                    GlobalTags.removeAtIndex(indexPath.row)
-                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
+                    GlobalTags.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath as IndexPath], with: .left)
                     for move in Moves {
                         move.Tags = move.Tags.filter({$0 != tag})
                     }
@@ -97,46 +98,46 @@ class EditTagsViewController: UITableViewController {
             }
     }
     
-    func removeTag(actionParam: (UIAlertAction) -> Void){
+    func removeTag(actionParam: @escaping (UIAlertAction) -> Void){
         //Create the AlertController
-        let myAlertController: UIAlertController = UIAlertController(title: "Hey!", message: "Removing this tag will remove it from all moves", preferredStyle: .Alert)
+        let myAlertController: UIAlertController = UIAlertController(title: "Hey!", message: "Removing this tag will remove it from all moves", preferredStyle: .alert)
         
         //Create and add the Cancel action
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         myAlertController.addAction(cancelAction)
         //Create and an option action
-        let nextAction: UIAlertAction = UIAlertAction(title: "Continue", style: .Default, handler:  actionParam )
+        let nextAction: UIAlertAction = UIAlertAction(title: "Continue", style: .default, handler:  actionParam )
         myAlertController.addAction(nextAction)
         
         //Present the AlertController
-        self.presentViewController(myAlertController, animated: true, completion: nil)
+        self.present(myAlertController, animated: true, completion: nil)
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = UITableViewCellAccessoryType.none
     }
     
     func IsCellSelected(cell: UITableViewCell) -> Bool{
-        return cell.accessoryType != UITableViewCellAccessoryType.None
+        return cell.accessoryType != UITableViewCellAccessoryType.none
     }
 
-    @IBAction func Add(sender: UIBarButtonItem) {
+    @IBAction func Add(_ sender: UIBarButtonItem) {
         //1. Create the alert controller.
-        let alert = UIAlertController(title: "Tag", message: nil, preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Tag", message: nil, preferredStyle: .alert)
         
         //2. Add the text field. You can configure it however you need.
-        alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
-            textField.autocapitalizationType = .Words
+        alert.addTextField(configurationHandler: { (textField) -> Void in
+            textField.autocapitalizationType = .words
         })
         
         //3. Grab the value from the text field, and print it when the user clicks OK.
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             let textField = alert.textFields![0] as UITextField
             GlobalTags.append(textField.text!)
             self.CurrentTags.append(textField.text!)
@@ -144,16 +145,16 @@ class EditTagsViewController: UITableViewController {
         }))
         
         // 4. Present the alert.
-        self.presentViewController(alert, animated: false, completion: nil)
+        self.present(alert, animated: false, completion: nil)
     }
     
-    @IBAction func Done(sender: UIBarButtonItem) {
+    @IBAction func Done(_ sender: UIBarButtonItem) {
         CurrentTags = [String]()
         for cell in tableView.visibleCells{
-            if IsCellSelected(cell) {
+            if IsCellSelected(cell: cell) {
                 CurrentTags.append(cell.textLabel!.text!)
             }
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

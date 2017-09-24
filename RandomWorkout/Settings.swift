@@ -22,18 +22,17 @@ func GenerateSettings(){
 }
 
 class Settings: NSObject, NSCoding {
-    
     var PrepTime:Int = 5
     
     struct PropertyKey {
         static let prepTimeKey = "prepTime"
     }
     
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("Settings")
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("Settings")
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeInteger(PrepTime, forKey: PropertyKey.prepTimeKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(PrepTime, forKey: PropertyKey.prepTimeKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -41,7 +40,7 @@ class Settings: NSObject, NSCoding {
         // Must call designated initializer.
         self.init()
         
-        self.PrepTime = aDecoder.decodeIntegerForKey(PropertyKey.prepTimeKey)
+        self.PrepTime = aDecoder.decodeInteger(forKey: PropertyKey.prepTimeKey)
     }
 }
 
@@ -54,12 +53,12 @@ func saveSettings() {
      }catch {
      print(error)
      }*/
-    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(CurrentSettings, toFile: Settings.ArchiveURL.path!)
+    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(CurrentSettings, toFile: Settings.ArchiveURL.path)
     if !isSuccessfulSave {
         print("Failed to save settings...", terminator: "")
     }
 }
 
 func loadSettings() -> Settings? {
-    return NSKeyedUnarchiver.unarchiveObjectWithFile(Settings.ArchiveURL.path!) as? Settings
+    return NSKeyedUnarchiver.unarchiveObject(withFile: Settings.ArchiveURL.path) as? Settings
 }

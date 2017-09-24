@@ -105,6 +105,7 @@ if let savedMoves = loadMoves() {
 }
 
 class Move: NSObject, NSCoding {
+    
     // MARK: Properties
     
     //var name: String
@@ -120,10 +121,10 @@ class Move: NSObject, NSCoding {
     
     // MARK: Archiving Paths
     
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     
     //Todo: Standerdize Path names with release
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("moves")
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("moves")
     
     // MARK: Types
     
@@ -158,13 +159,13 @@ class Move: NSObject, NSCoding {
     
     // MARK: NSCoding
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(Name, forKey: PropertyKey.nameKey)
-        aCoder.encodeInteger(Time, forKey: PropertyKey.timeKey)
-        aCoder.encodeInteger(Weight, forKey: PropertyKey.weightKey)
-        aCoder.encodeBool(Removed, forKey: PropertyKey.removeKey)
-        aCoder.encodeObject(Tags, forKey: PropertyKey.tagsKey)
-        aCoder.encodeObject(Media, forKey: PropertyKey.mediaKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(Name, forKey: PropertyKey.nameKey)
+        aCoder.encode(Time, forKey: PropertyKey.timeKey)
+        aCoder.encode(Weight, forKey: PropertyKey.weightKey)
+        aCoder.encode(Removed, forKey: PropertyKey.removeKey)
+        aCoder.encode(Tags, forKey: PropertyKey.tagsKey)
+        aCoder.encode(Media, forKey: PropertyKey.mediaKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -173,29 +174,29 @@ class Move: NSObject, NSCoding {
         // Must call designated initializer.
         self.init()
         
-        self.Name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
+        self.Name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as! String
         
         // Because photo is an optional property of Meal, use conditional cast.
-        self.Time = aDecoder.decodeIntegerForKey(PropertyKey.timeKey)
+        self.Time = aDecoder.decodeInteger(forKey: PropertyKey.timeKey)
         
-        self.Weight = aDecoder.decodeIntegerForKey(PropertyKey.weightKey)
+        self.Weight = aDecoder.decodeInteger(forKey: PropertyKey.weightKey)
         
-        self.Removed = aDecoder.decodeBoolForKey(PropertyKey.removeKey)
+        self.Removed = aDecoder.decodeBool(forKey: PropertyKey.removeKey)
         
-        self.Tags = aDecoder.decodeObjectForKey(PropertyKey.tagsKey) as! [String]
+        self.Tags = aDecoder.decodeObject(forKey: PropertyKey.tagsKey) as! [String]
         
-        self.Media = aDecoder.decodeObjectForKey(PropertyKey.mediaKey) as? UIImage
+        self.Media = aDecoder.decodeObject(forKey: PropertyKey.mediaKey) as? UIImage
     }
     
 }
 
 func saveMoves() {
-    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(Moves, toFile: Move.ArchiveURL.path!)
+    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(Moves, toFile: Move.ArchiveURL.path)
     if !isSuccessfulSave {
         print("Failed to save moves...", terminator: "")
     }
 }
 
 func loadMoves() -> [Move]? {
-    return NSKeyedUnarchiver.unarchiveObjectWithFile(Move.ArchiveURL.path!) as? [Move]
+    return NSKeyedUnarchiver.unarchiveObject(withFile: Move.ArchiveURL.path) as? [Move]
 }
