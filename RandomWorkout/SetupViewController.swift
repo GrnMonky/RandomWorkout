@@ -146,10 +146,10 @@ class SetupViewController: UIViewController {
         CurrentWorkout.Infinite = UseEndTimeSwitch.isOn
         
         if let NavView = segue.destination as? UINavigationController {
-            if let TagView = NavView.childViewControllers.first! as? EditTagsViewController {
+            if let TagView = NavView.children.first! as? EditTagsViewController {
                 TagView.TagsArray = CurrentWorkout.WorkoutTagsReference
             }
-            if let WorkoutView = NavView.childViewControllers.first! as? WorkoutViewController {
+            if let WorkoutView = NavView.children.first! as? WorkoutViewController {
                 CurrentWorkout.TimeDiff = (Int)(StopTimePicker.date.timeIntervalSince(Date()))
                 WorkoutView.EndTime = StopTimePicker.date as NSDate
                 WorkoutView.LocalMoves = taggedMoves

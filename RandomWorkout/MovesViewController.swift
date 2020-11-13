@@ -86,7 +86,7 @@ UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView,
                    editingStyleForRowAt indexPath: IndexPath)
-        -> UITableViewCellEditingStyle{
+        -> UITableViewCell.EditingStyle{
             return .delete
     }
     
@@ -97,7 +97,7 @@ UITableViewDataSource, UITableViewDelegate {
 
     
     func tableView(_ tableView: UITableView,
-                   commit editingStyle: UITableViewCellEditingStyle,
+                   commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath){
             
         if editingStyle == .delete{

@@ -66,14 +66,14 @@ class EditTagsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell",
                                                  for: indexPath as IndexPath)
             
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
             
             cell.textLabel!.text = GlobalTags[indexPath.row]
             
             if let text = cell.textLabel!.text {
                 if CurrentTags.contains(text){
                     tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
-                    tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+                    tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
                 }
             }
             
@@ -82,7 +82,7 @@ class EditTagsViewController: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView,
-        commit editingStyle: UITableViewCellEditingStyle,
+        commit editingStyle: UITableViewCell.EditingStyle,
         forRowAt indexPath: IndexPath){
         
         if editingStyle == .delete{
@@ -115,16 +115,16 @@ class EditTagsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = UITableViewCellAccessoryType.none
+        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = UITableViewCell.AccessoryType.none
     }
     
     func IsCellSelected(cell: UITableViewCell) -> Bool{
-        return cell.accessoryType != UITableViewCellAccessoryType.none
+        return cell.accessoryType != UITableViewCell.AccessoryType.none
     }
 
     @IBAction func Add(_ sender: UIBarButtonItem) {

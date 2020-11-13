@@ -55,11 +55,11 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigatio
     
     @IBAction func editImageClicked(_ sender: AnyObject) {
         
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
             //print("Button capture")
             
             imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
+            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary;
             imagePicker.allowsEditing = false
             
             self.present(imagePicker, animated: true, completion: nil)
@@ -89,7 +89,7 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigatio
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let NavView = segue.destination as! UINavigationController
-        let TagView = NavView.childViewControllers.first! as! EditTagsViewController
+        let TagView = NavView.children.first! as! EditTagsViewController
         
         TagView.title = "\(NameTxtFld.text!) Tags"
         TagView.TagsArray = arrayReference
