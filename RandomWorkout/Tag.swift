@@ -30,12 +30,27 @@ class Tags{
 }
 
 func saveTags() {
-    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(GlobalTags, toFile: Tags.ArchiveURL.path)
-    if !isSuccessfulSave {
-        print("Failed to save tags...", terminator: "")
+    do {
+        let data = try NSKeyedArchiver.archivedData(withRootObject: GlobalTags, requiringSecureCoding: false)
+        try data.write(to: Tags.ArchiveURL)
+    } catch {
+        print("Failed to save moves...", terminator: "")
     }
 }
 
 func loadTags() -> [String]? {
-    return NSKeyedUnarchiver.unarchiveObject(withFile: Tags.ArchiveURL.path) as? [String]
+    if let nsData = NSData(contentsOf: Tags.ArchiveURL) {
+            do {
+
+                let data = Data(referencing:nsData)
+
+                if let tags = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [String] {
+                    return tags
+                }
+            } catch {
+                print("Couldn't read file.")
+                return nil
+            }
+        }
+    return nil
 }

@@ -191,12 +191,27 @@ class Move: NSObject, NSCoding {
 }
 
 func saveMoves() {
-    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(Moves, toFile: Move.ArchiveURL.path)
-    if !isSuccessfulSave {
+    do {
+        let data = try NSKeyedArchiver.archivedData(withRootObject: Moves, requiringSecureCoding: false)
+        try data.write(to: Move.ArchiveURL)
+    } catch {
         print("Failed to save moves...", terminator: "")
     }
 }
 
 func loadMoves() -> [Move]? {
-    return NSKeyedUnarchiver.unarchiveObject(withFile: Move.ArchiveURL.path) as? [Move]
+    if let nsData = NSData(contentsOf: Move.ArchiveURL) {
+            do {
+
+                let data = Data(referencing:nsData)
+
+                if let workout = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Move]? {
+                    return workout
+                }
+            } catch {
+                print("Couldn't read file.")
+                return nil
+            }
+        }
+    return nil
 }

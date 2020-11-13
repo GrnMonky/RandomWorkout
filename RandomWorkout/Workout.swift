@@ -84,20 +84,27 @@ class Workout: NSObject, NSCoding {
 }
 
 func saveWorkout() {
-    
-    //How to delete a file
-    /*let fileManager : NSFileManager = NSFileManager.defaultManager();
     do {
-        try fileManager.removeItemAtPath(Workout.ArchiveURL.path!)
-    }catch {
-        print(error)
-    }*/
-    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(CurrentWorkout, toFile: Workout.ArchiveURL.path)
-    if !isSuccessfulSave {
+        let data = try NSKeyedArchiver.archivedData(withRootObject: CurrentWorkout, requiringSecureCoding: false)
+        try data.write(to: Workout.ArchiveURL)
+    } catch {
         print("Failed to save workout...", terminator: "")
     }
 }
 
 func loadWorkout() -> Workout? {
-    return NSKeyedUnarchiver.unarchiveObject(withFile: Workout.ArchiveURL.path) as? Workout
+    if let nsData = NSData(contentsOf: Workout.ArchiveURL) {
+            do {
+
+                let data = Data(referencing:nsData)
+
+                if let workout = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Workout {
+                    return workout
+                }
+            } catch {
+                print("Couldn't read file.")
+                return nil
+            }
+        }
+    return nil
 }

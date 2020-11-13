@@ -62,3 +62,5 @@ func saveSettings() {
 func loadSettings() -> Settings? {
     return NSKeyedUnarchiver.unarchiveObject(withFile: Settings.ArchiveURL.path) as? Settings
 }
+
+
