@@ -155,6 +155,7 @@ class EditTagsViewController: UITableViewController {
                 CurrentTags.append(cell.textLabel!.text!)
             }
         }
+        saveTags()
         self.dismiss(animated: true, completion: nil)
     }
 }

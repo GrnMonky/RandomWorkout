@@ -143,7 +143,7 @@ class Move: NSObject, NSCoding {
         // Initialize stored properties.
         self.Name = name
         
-        //super.init(;
+        //super.init();
         
         // Initialization should fail if there is no name or if the rating is negative.
         /*if name.isEmpty || rating < 0 {
@@ -194,6 +194,7 @@ func saveMoves() {
     do {
         let data = try NSKeyedArchiver.archivedData(withRootObject: Moves, requiringSecureCoding: false)
         try data.write(to: Move.ArchiveURL)
+        NotificationCenter.default.post(name: Notification.Name("MoveChanged"), object: nil)
     } catch {
         print("Failed to save moves...", terminator: "")
     }

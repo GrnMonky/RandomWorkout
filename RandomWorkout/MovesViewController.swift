@@ -9,7 +9,7 @@
 import UIKit
 
 class MovesViewController: UIViewController,
-UITableViewDataSource, UITableViewDelegate {
+                           UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView: UITableView!
     //var tableView: UITableView?
@@ -19,93 +19,69 @@ UITableViewDataSource, UITableViewDelegate {
         super.init(coder: aDecoder)
         
         /*for index in 0..<10{
-            allRows.append("Cell at index of \(index)")
-        }*/
+         allRows.append("Cell at index of \(index)")
+         }*/
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //navigationItem.setLeftBarButtonItem(editButtonItem(), animated: false)
-        
-        //navigationItem.setRightBarButtonItem(, animated: true)
-        
-        
-        //tableView = UITableView(frame: view., style: .Plain)
-        
-        //tableView.dataSource = self
-        //tableView.delegate = self
-        
-        /*tableView.registerClass(UITableViewCell.classForCoder(),
-            forCellReuseIdentifier: "identifier")*/
-        
-        /*if let theTableView = tableView{
-            
-        
-            
-            theTableView.dataSource = self
-            theTableView.delegate = self
-            theTableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-            
-            view.addSubview(theTableView)
-        }*/
-        
         tableView.reloadData()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("MovesChanged"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("MoveChanged"), object: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        //saveMoves()
+    @objc func methodOfReceivedNotification(notification: Notification) {
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView,
-        numberOfRowsInSection section: Int) -> Int {
-            
-            return Moves.count
-            
+                   numberOfRowsInSection section: Int) -> Int {
+        
+        return Moves.count
+        
     }
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-            
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell",
                                                  for: indexPath as IndexPath) as! TableViewCell
-            
-            
-            
-            cell.textLabel!.text = Moves[indexPath.row].Name
+        
+        
+        
+        cell.textLabel!.text = Moves[indexPath.row].Name
         cell.Switch.isOn = !Moves[indexPath.row].Removed
-            cell.Content = Moves[indexPath.row]
-            
-            return cell
-            
+        cell.Content = Moves[indexPath.row]
+        
+        return cell
+        
     }
     
     func tableView(_ tableView: UITableView,
                    editingStyleForRowAt indexPath: IndexPath)
-        -> UITableViewCell.EditingStyle{
-            return .delete
+    -> UITableViewCell.EditingStyle{
+        return .delete
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView!.setEditing(editing, animated: animated)
     }
-
+    
     
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath){
-            
+        
         if editingStyle == .delete{
-                /* First remove this object from the source */
+            /* First remove this object from the source */
             Moves.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath as IndexPath], with: .left)
-            }
-            
+            saveMoves()
+        }
     }
     
     func tableView(_ tableView: UITableView,
@@ -133,9 +109,7 @@ UITableViewDataSource, UITableViewDelegate {
         //Create and an option action
         let nextAction: UIAlertAction = UIAlertAction(title: "Yes", style: .default) { action -> Void in
             
-            
             Moves = [Move]()
-            self.tableView.reloadData()
         }
         myAlertController.addAction(nextAction)
         

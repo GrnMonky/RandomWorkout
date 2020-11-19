@@ -125,6 +125,7 @@ class EditMoveViewController: UIViewController, UITextFieldDelegate, UINavigatio
         {
             Moves.insert(_move, at: 0)
         }
+        saveMoves()
         self.dismiss(animated: true, completion: nil)
     }
     

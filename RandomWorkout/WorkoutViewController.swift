@@ -115,9 +115,9 @@ class WorkoutViewController: UIViewController {
     @objc func update(){
         let diff = -start.timeIntervalSinceNow
         start = NSDate()
-        TotalTimeLbl.text = Helpers.ConvertFloatToTime(TotalTime)
+        TotalTimeLbl.text = "Total: \(Helpers.ConvertFloatToTime(TotalTime))"
         TotalTime =  TotalTime + diff
-        MoveTimeLbl.text = Helpers.ConvertFloatToTimeMilli(MoveTime)
+        MoveTimeLbl.text = Helpers.ConvertFloatToTime(MoveTime)
         MoveTime = MoveTime - diff
         
         if(self.State == WorkoutState.Preping){

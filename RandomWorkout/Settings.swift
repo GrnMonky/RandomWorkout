@@ -45,22 +45,32 @@ class Settings: NSObject, NSCoding {
 }
 
 func saveSettings() {
-    
-    //How to delete a file
-    /*let fileManager : NSFileManager = NSFileManager.defaultManager();
-     do {
-     try fileManager.removeItemAtPath(Workout.ArchiveURL.path!)
-     }catch {
-     print(error)
-     }*/
-    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(CurrentSettings, toFile: Settings.ArchiveURL.path)
-    if !isSuccessfulSave {
+    do {
+        if let nsData = NSData(contentsOf: Settings.ArchiveURL) {
+    let data = try? NSKeyedArchiver.archivedData(withRootObject: nsData, requiringSecureCoding: true)
+            try data?.write(to: Settings.ArchiveURL)
+        }
+    }
+    catch {
         print("Failed to save settings...", terminator: "")
     }
 }
 
 func loadSettings() -> Settings? {
-    return NSKeyedUnarchiver.unarchiveObject(withFile: Settings.ArchiveURL.path) as? Settings
+    if let nsData = NSData(contentsOf: Settings.ArchiveURL) {
+            do {
+
+                let data = Data(referencing:nsData)
+
+                if let settings = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Settings {
+                    return settings
+                }
+            } catch {
+                print("Couldn't read file.")
+                return nil
+            }
+        }
+        return nil
 }
 
 
