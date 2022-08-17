@@ -67,7 +67,7 @@ class SetupViewController: UIViewController {
     var stepperValue = 0
     @IBAction func TimeStepperChanged(_ sender: UIStepper) {
         let diff = sender.value - Double(stepperValue)
-        if(diff > 0 || currentTime > 2){
+        if(diff > 0 || currentTime > 1){
             StopTimePicker.date = StopTimePicker.date.addingTimeInterval(diff * 60)
             let min = NSCalendar.current.component(.minute, from: StopTimePicker.date)
         stepperValue = min
@@ -99,16 +99,24 @@ class SetupViewController: UIViewController {
     
     @IBAction func TimeIncremented(_ sender: UIStepper) {
         
-        EndTimeLbl.text = String(currentTime) + " mins"
+        if currentTime > 1 {
+            EndTimeLbl.text = String(currentTime) + " mins"
+        } else {
+            EndTimeLbl.text = String(currentTime) + " min"
+        }
     }
     
     @objc func Update()
     {
-        StopTimePicker.minimumDate = NSDate(timeIntervalSinceNow: 120) as Date
+        StopTimePicker.minimumDate = NSDate(timeIntervalSinceNow: 60) as Date
         
         if(!UseEndTimeSwitch.isOn)
         {
-        EndTimeLbl.text = String(currentTime) + " mins"
+            if currentTime > 1 {
+                EndTimeLbl.text = String(currentTime) + " mins"
+            } else {
+                EndTimeLbl.text = String(currentTime) + " min"
+            }
         }
     }
     
