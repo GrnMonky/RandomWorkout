@@ -57,7 +57,7 @@ class SetupViewController: UIViewController {
     
     @IBAction func setRandomMove() {
         RandomMove = getTaggedMoves().randomElement() ?? Move()
-        RandomMoveImage.image = RandomMove.Media?.images?.first
+        RandomMoveImage.image = RandomMove.Media
         RandomMoveButton.setTitle(RandomMove.Name, for: .normal)
     }
     
