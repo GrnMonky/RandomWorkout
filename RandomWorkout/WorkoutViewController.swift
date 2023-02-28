@@ -179,6 +179,7 @@ class WorkoutViewController: UIViewController {
             beep = CurrentSettings.PrepTime > 5 ? 5 : CurrentSettings.PrepTime
             NextMoveLbl.text = "Up next: \(NextMove!.Name)"
             SpeakMove(MoveToSpeak: NextMove!)
+            ImageView.image = NextMove?.Media
             State = WorkoutState.Preping
             break
         case .Preping:
