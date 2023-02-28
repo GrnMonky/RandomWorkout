@@ -15,12 +15,8 @@ func GenerateTags(){
     // Load any saved moves, otherwise load sample data.
     if let savedTags = loadTags() {
         GlobalTags = savedTags
-        
     } else {
-        GlobalTags = [
-            "Cardio",
-            "Strength"
-        ]
+        GlobalTags = []
     }
 }
 
@@ -31,6 +27,7 @@ class Tags{
 
 func saveTags() {
     do {
+        GlobalTags = Array(Set(Moves.compactMap{ $0.Tags}.flatMap{$0})).sorted()
         let data = try NSKeyedArchiver.archivedData(withRootObject: GlobalTags, requiringSecureCoding: false)
         try data.write(to: Tags.ArchiveURL)
     } catch {

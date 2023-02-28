@@ -56,7 +56,12 @@ class SetupViewController: UIViewController {
     }
     
     @IBAction func setRandomMove() {
-        RandomMove = getTaggedMoves().randomElement() ?? Move()
+        getTaggedMoves()
+        if taggedMoves.count > 1 {
+            RandomMove = taggedMoves.filter{ $0 != RandomMove  }.randomElement() ?? Move()
+        } else {
+            RandomMove = taggedMoves.randomElement() ?? Move()
+        }
         RandomMoveImage.image = RandomMove.Media
         RandomMoveButton.setTitle(RandomMove.Name, for: .normal)
     }
@@ -135,11 +140,16 @@ class SetupViewController: UIViewController {
     @discardableResult
     fileprivate func getTaggedMoves() -> [Move] {
         taggedMoves = [Move]()
-        for move in Moves{
-            for tag in CurrentWorkout.WorkoutTags {
-                if !move.Removed && move.Tags.contains(tag){
-                    taggedMoves.append(move)
-                    break
+        if !CurrentWorkout.MoveTagsOn {
+            taggedMoves = Moves.filter({!$0.Removed})
+        }
+        else{
+            for move in Moves{
+                for tag in CurrentWorkout.WorkoutTags {
+                    if !move.Removed && move.Tags.contains(tag){
+                        taggedMoves.append(move)
+                        break
+                    }
                 }
             }
         }
@@ -148,13 +158,8 @@ class SetupViewController: UIViewController {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "Workout" {
-            if !CurrentWorkout.MoveTagsOn {
-                taggedMoves = Moves.filter({!$0.Removed})
-            }
-            else{
-                getTaggedMoves()
-            }
-            
+            getTaggedMoves()
+
             if taggedMoves.count < 1 {
                 return false;
             }
@@ -173,6 +178,7 @@ class SetupViewController: UIViewController {
         if let NavView = segue.destination as? UINavigationController {
             if let TagView = NavView.children.first! as? EditTagsViewController {
                 TagView.TagsArray = CurrentWorkout.WorkoutTagsReference
+                TagView.AddButton.isHidden = true
             }
             if let WorkoutView = NavView.children.first! as? WorkoutViewController {
                 CurrentWorkout.TimeDiff = (Int)(StopTimePicker.date.timeIntervalSince(Date()))

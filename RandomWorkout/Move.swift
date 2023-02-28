@@ -192,6 +192,7 @@ class Move: NSObject, NSCoding {
 
 func saveMoves() {
     do {
+        saveTags()
         let data = try NSKeyedArchiver.archivedData(withRootObject: Moves, requiringSecureCoding: false)
         try data.write(to: Move.ArchiveURL)
         NotificationCenter.default.post(name: Notification.Name("MoveChanged"), object: nil)
@@ -207,7 +208,7 @@ func loadMoves() -> [Move]? {
             let data = Data(referencing:nsData)
             
             if let workout = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Move]? {
-                return workout
+                return workout?.sorted(by: {$0.Name < $1.Name})
             }
         } catch {
             print("Couldn't read file.")

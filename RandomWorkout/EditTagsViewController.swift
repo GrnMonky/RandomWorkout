@@ -11,6 +11,7 @@ import UIKit
 class EditTagsViewController: UITableViewController {
     
     
+    @IBOutlet weak var AddButton: UIBarButtonItem!
     var TagsArray = ArrayWrapper<String>()
     var CurrentTags:[String]
     {
@@ -25,77 +26,74 @@ class EditTagsViewController: UITableViewController {
     
     
     /*override func setEditing(editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        tableView!.setEditing(editing, animated: animated)
-    }*/
+     super.setEditing(editing, animated: animated)
+     tableView!.setEditing(editing, animated: animated)
+     }*/
     
     override func viewWillAppear(_ animated: Bool) {
         //saveMoves()
+        GenerateTags()
         super.viewWillAppear(animated)
-        
-        for cell in tableView.visibleCells {
-            if cell.isSelected{
-                tableView(tableView, didSelectRowAt: tableView.indexPath(for: cell)!)
-            }
-        }
     }
     
     /*required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        /*for index in 0..<10{
-        allRows.append("Cell at index of \(index)")
-        }*/
-        
-    }*/
+     super.init(coder: aDecoder)
+     
+     /*for index in 0..<10{
+      allRows.append("Cell at index of \(index)")
+      }*/
+     
+     }*/
     
     override func tableView(_ tableView: UITableView,
-        numberOfRowsInSection section: Int) -> Int {
-            
-            return GlobalTags.count
-            
+                            numberOfRowsInSection section: Int) -> Int {
+        
+        return GlobalTags.count
+        
     }
     
     /*override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }*/
+     return false
+     }*/
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-            
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell",
                                                  for: indexPath as IndexPath)
-            
+        
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-            
-            cell.textLabel!.text = GlobalTags[indexPath.row]
-            
-            if let text = cell.textLabel!.text {
-                if CurrentTags.contains(text){
-                    tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
-                    tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
-                }
+        
+        cell.textLabel!.text = GlobalTags[indexPath.row]
+        
+        if let text = cell.textLabel!.text {
+            if CurrentTags.contains(text){
+                //tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
+                cell.accessoryType = UITableViewCell.AccessoryType.checkmark
+            } else {
+                cell.accessoryType = UITableViewCell.AccessoryType.none
             }
-            
-            return cell
+        }
+        
+        return cell
     }
     
-
+    
     override func tableView(_ tableView: UITableView,
-        commit editingStyle: UITableViewCell.EditingStyle,
-        forRowAt indexPath: IndexPath){
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath){
         
         if editingStyle == .delete{
-                
-                removeTag(){ action -> Void in
-                    let tag = GlobalTags[indexPath.row]
-                    GlobalTags.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath as IndexPath], with: .left)
-                    for move in Moves {
-                        move.Tags = move.Tags.filter({$0 != tag})
-                    }
+            
+            removeTag(){ action -> Void in
+                let tag = GlobalTags[indexPath.row]
+                GlobalTags.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath as IndexPath], with: .left)
+                for move in Moves {
+                    move.Tags = move.Tags.filter({$0 != tag})
                 }
             }
+        }
     }
     
     func removeTag(actionParam: @escaping (UIAlertAction) -> Void){
@@ -124,9 +122,9 @@ class EditTagsViewController: UITableViewController {
     }
     
     func IsCellSelected(cell: UITableViewCell) -> Bool{
-        return cell.accessoryType != UITableViewCell.AccessoryType.none
+        return cell.accessoryType == UITableViewCell.AccessoryType.checkmark
     }
-
+    
     @IBAction func Add(_ sender: UIBarButtonItem) {
         //1. Create the alert controller.
         let alert = UIAlertController(title: "Tag", message: nil, preferredStyle: .alert)
@@ -155,7 +153,6 @@ class EditTagsViewController: UITableViewController {
                 CurrentTags.append(cell.textLabel!.text!)
             }
         }
-        saveTags()
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {})
     }
 }
