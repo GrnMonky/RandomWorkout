@@ -10,97 +10,97 @@ import Foundation
 import UIKit
 
 /*var Moves : [Move] {
-    get{
-        return MovesHolder().Moves
-    }
-}
-
-class MovesHolder{
-    
-    let Moves : [Move]
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(Moves, forKey: "Moves")
-    }
-    
-    required convenience init?(coder aDecoder: NSCoder) {
-        Moves = aDecoder.decodeObjectForKey("Moves") as! [Move]
-    }
-}*/
+ get{
+ return MovesHolder().Moves
+ }
+ }
+ 
+ class MovesHolder{
+ 
+ let Moves : [Move]
+ 
+ func encodeWithCoder(aCoder: NSCoder) {
+ aCoder.encodeObject(Moves, forKey: "Moves")
+ }
+ 
+ required convenience init?(coder aDecoder: NSCoder) {
+ Moves = aDecoder.decodeObjectForKey("Moves") as! [Move]
+ }
+ }*/
 
 var Moves = [Move]()
 
 
 func GenerateMoves(){
     
-// Load any saved moves, otherwise load sample data.
-if let savedMoves = loadMoves() {
-    Moves = savedMoves
-    
-} else {
-    // Load the sample data.
-    Moves = [
+    // Load any saved moves, otherwise load sample data.
+    if let savedMoves = loadMoves() {
+        Moves = savedMoves
         
-        Move(name: "Burpees"),
-        Move(name: "Squats"),
-        Move(name: "Bicep Curls"),
-        Move(name: "Walking Push-Ups"),
-        Move(name: "Lunge kick"),
-        Move(name: "Side Planks with Leg Raises"),
-        Move(name: "Mountain Climbers"),
-        Move(name: "Jabs"),
-        Move(name: "Lunges"),
-        Move(name: "Push-Up"),
-        Move(name: "Plank Knee Tuck"),
-        Move(name: "Shuffle"),
-        Move(name: "Kicks"),
-        Move(name: "In and Out abs plank"),
-        Move(name: "Twist Knee Up"),
-        Move(name: "Tricep dips"),
-        Move(name: "Monkey Press"),
-        Move(name: "Uppercuts"),
-        Move(name: "Mason Twists"),
-        Move(name: "C sit abs"),
-        Move(name: "Dumbbell swings"),
-        Move(name: "Tricep Kickback"),
-        Move(name: "Bent over rows"),
-        Move(name: "Sun Salutation"),
-        Move(name: "Bicycle kicks"),
-        Move(name: "Superman"),
-        Move(name: "Scissor kicks"),
-        Move(name: "Shoulder push-ups"),
-        Move(name: "Dive bomber push-ups"),
-        Move(name: "Warrior"),
-        Move(name: "Half moon"),
-        Move(name: "Ab Tucks"),
-        Move(name: "Jack push-up"),
-        Move(name: "Spider-Man pushup"),
-        Move(name: "Side plank hip dips"),
-        Move(name: "Hip-hop Kicks"),
-        Move(name: "Squatting shuffle"),
-        Move(name: "Staggered pushup"),
-        Move(name: "Calf raises"),
-        Move(name: "Side kicks"),
-        Move(name: "Tricep ball push-ups"),
-        Move(name: "Twisting half moon"),
-        Move(name: "Power knee"),
-        Move(name: "Swimmer"),
-        Move(name: "Skaters"),
-        Move(name: "Tricep curls"),
-        Move(name: "Military march"),
-        Move(name: "Up and over knee"),
-        Move(name: "Twisting Warrior"),
-        Move(name: "Chair"),
-        Move(name: "In and out knee"),
-        Move(name: "Shoulder flys"),
-        Move(name: "Bent over flys"),
-        Move(name: "Ski abs"),
-        Move(name: "Hammer curls"),
-        Move(name: "Alphabet abs"),
-        Move(name: "Side plank dance kick"),
-        Move(name: "Scarecrow press"),
-        Move(name: "Marching bridge")
-    ]
+    } else {
+        // Load the sample data.
+        Moves = [
+            
+            Move(name: "Burpees"),
+            Move(name: "Squats"),
+            Move(name: "Bicep Curls"),
+            Move(name: "Walking Push-Ups"),
+            Move(name: "Lunge kick"),
+            Move(name: "Side Planks with Leg Raises"),
+            Move(name: "Mountain Climbers"),
+            Move(name: "Jabs"),
+            Move(name: "Lunges"),
+            Move(name: "Push-Up"),
+            Move(name: "Plank Knee Tuck"),
+            Move(name: "Shuffle"),
+            Move(name: "Kicks"),
+            Move(name: "In and Out abs plank"),
+            Move(name: "Twist Knee Up"),
+            Move(name: "Tricep dips"),
+            Move(name: "Monkey Press"),
+            Move(name: "Uppercuts"),
+            Move(name: "Mason Twists"),
+            Move(name: "C sit abs"),
+            Move(name: "Dumbbell swings"),
+            Move(name: "Tricep Kickback"),
+            Move(name: "Bent over rows"),
+            Move(name: "Sun Salutation"),
+            Move(name: "Bicycle kicks"),
+            Move(name: "Superman"),
+            Move(name: "Scissor kicks"),
+            Move(name: "Shoulder push-ups"),
+            Move(name: "Dive bomber push-ups"),
+            Move(name: "Warrior"),
+            Move(name: "Half moon"),
+            Move(name: "Ab Tucks"),
+            Move(name: "Jack push-up"),
+            Move(name: "Spider-Man pushup"),
+            Move(name: "Side plank hip dips"),
+            Move(name: "Hip-hop Kicks"),
+            Move(name: "Squatting shuffle"),
+            Move(name: "Staggered pushup"),
+            Move(name: "Calf raises"),
+            Move(name: "Side kicks"),
+            Move(name: "Tricep ball push-ups"),
+            Move(name: "Twisting half moon"),
+            Move(name: "Power knee"),
+            Move(name: "Swimmer"),
+            Move(name: "Skaters"),
+            Move(name: "Tricep curls"),
+            Move(name: "Military march"),
+            Move(name: "Up and over knee"),
+            Move(name: "Twisting Warrior"),
+            Move(name: "Chair"),
+            Move(name: "In and out knee"),
+            Move(name: "Shoulder flys"),
+            Move(name: "Bent over flys"),
+            Move(name: "Ski abs"),
+            Move(name: "Hammer curls"),
+            Move(name: "Alphabet abs"),
+            Move(name: "Side plank dance kick"),
+            Move(name: "Scarecrow press"),
+            Move(name: "Marching bridge")
+        ]
     }
 }
 
@@ -147,8 +147,8 @@ class Move: NSObject, NSCoding {
         
         // Initialization should fail if there is no name or if the rating is negative.
         /*if name.isEmpty || rating < 0 {
-            return nil
-        }*/
+         return nil
+         }*/
     }
     
     override init(){
@@ -202,17 +202,17 @@ func saveMoves() {
 
 func loadMoves() -> [Move]? {
     if let nsData = NSData(contentsOf: Move.ArchiveURL) {
-            do {
-
-                let data = Data(referencing:nsData)
-
-                if let workout = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Move]? {
-                    return workout
-                }
-            } catch {
-                print("Couldn't read file.")
-                return nil
+        do {
+            
+            let data = Data(referencing:nsData)
+            
+            if let workout = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Move]? {
+                return workout
             }
+        } catch {
+            print("Couldn't read file.")
+            return nil
         }
+    }
     return nil
 }

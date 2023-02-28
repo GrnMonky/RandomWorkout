@@ -127,10 +127,11 @@ class WorkoutViewController: UIViewController {
             }
         }
         
-        if(Float(MoveTime) <= Float(CurrentMove.Time/2) && State == WorkoutState.InMove && halfway == false)
+        if(Int(MoveTime) <= Int(CurrentMove.Time/2 + 1) && State == WorkoutState.InMove && halfway == false)
         {
             halfway = true
             buttonPlayer.play()
+            Speak(string: "Switch")
         }
         if(MoveTime <= 0){
             UpdateState()
@@ -184,7 +185,7 @@ class WorkoutViewController: UIViewController {
             //Go to move
             halfway = false
             CurrentMove = NextMove!
-            MoveTime = Double(NextMove!.Time)
+            MoveTime = Double(NextMove!.Time) + 1
             NextMoveLbl.text = ""
             NextMove = ChooseNextMove()
             if NextMove == nil{

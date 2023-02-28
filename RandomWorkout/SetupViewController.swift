@@ -47,6 +47,7 @@ class SetupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         //saveMoves()
+        setRandomMove()
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,15 +55,25 @@ class SetupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    var UpdateTimer = Timer()
+    @IBAction func setRandomMove() {
+        RandomMove = getTaggedMoves().randomElement() ?? Move()
+        RandomMoveImage.image = RandomMove.Media?.images?.first
+        RandomMoveButton.setTitle(RandomMove.Name, for: .normal)
+    }
     
-    @IBOutlet weak var TimeLbl: UILabel!
+    var UpdateTimer = Timer()
+    var RandomMove = Move()
+    
+    //@IBOutlet weak var TimeLbl: UILabel!
     
     @IBOutlet weak var UseEndTimeSwitch: UISwitch!
     @IBOutlet weak var StopTimePicker: UIDatePicker!
     @IBOutlet weak var EndTimeLbl: UILabel!
     @IBOutlet weak var SelectTagsBtn: UIButton!
     @IBOutlet weak var AllMovesSwitch: UISwitch!
+    @IBOutlet weak var RandomMoveImage: UIImageView!
+    @IBOutlet weak var RandomMoveButton: UIButton!
+    
     
     var stepperValue = 0
     @IBAction func TimeStepperChanged(_ sender: UIStepper) {
@@ -119,23 +130,29 @@ class SetupViewController: UIViewController {
             }
         }
     }
-    
     var taggedMoves = [Move]()
+    
+    @discardableResult
+    fileprivate func getTaggedMoves() -> [Move] {
+        taggedMoves = [Move]()
+        for move in Moves{
+            for tag in CurrentWorkout.WorkoutTags {
+                if !move.Removed && move.Tags.contains(tag){
+                    taggedMoves.append(move)
+                    break
+                }
+            }
+        }
+        return taggedMoves
+    }
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "Workout" {
             if !CurrentWorkout.MoveTagsOn {
                 taggedMoves = Moves.filter({!$0.Removed})
             }
             else{
-                taggedMoves = [Move]()
-                for move in Moves{
-                    for tag in CurrentWorkout.WorkoutTags {
-                        if !move.Removed && move.Tags.contains(tag){
-                            taggedMoves.append(move)
-                            break
-                        }
-                    }
-                }
+                getTaggedMoves()
             }
             
             if taggedMoves.count < 1 {
