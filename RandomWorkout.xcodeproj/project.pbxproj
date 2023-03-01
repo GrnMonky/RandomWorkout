@@ -32,7 +32,7 @@
 		4ABE67EC1A54CEAD000024ED /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE67EB1A54CEAD000024ED /* beep.wav */; };
 		4AC9E9D51C35BAE700D7EEC2 /* HealthKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9E9D41C35BAE700D7EEC2 /* HealthKitHelper.swift */; };
 		4AC9E9D71C37210600D7EEC2 /* EditTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9E9D61C37210600D7EEC2 /* EditTagsViewController.swift */; };
-		EB8FC61C1F77B5A3006E9FBC /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8FC61B1F77B5A3006E9FBC /* HealthKit.framework */; };
+		EB8E60BD29AEF3D900BE7CDE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8FC61B1F77B5A3006E9FBC /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,7 +101,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A937F6E1D11760E00317984 /* AVFoundation.framework in Frameworks */,
-				EB8FC61C1F77B5A3006E9FBC /* HealthKit.framework in Frameworks */,
+				EB8E60BD29AEF3D900BE7CDE /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,7 +555,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -605,7 +605,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

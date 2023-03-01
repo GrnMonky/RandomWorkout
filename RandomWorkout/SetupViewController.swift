@@ -43,11 +43,13 @@ class SetupViewController: UIViewController {
         GenerateSettings()
         
         HealthKitHelper.Setup()
+        
+        setRandomMove()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         //saveMoves()
-        setRandomMove()
+        //setRandomMove()
     }
 
     override func didReceiveMemoryWarning() {
@@ -111,6 +113,7 @@ class SetupViewController: UIViewController {
     @IBAction func AllMovesSwitched(_ sender: UISwitch){
         SelectTagsBtn.isEnabled = sender.isOn
         CurrentWorkout.MoveTagsOn = sender.isOn
+        setRandomMove()
     }
     
     @IBAction func TimeIncremented(_ sender: UIStepper) {
@@ -153,6 +156,9 @@ class SetupViewController: UIViewController {
                 }
             }
         }
+        if taggedMoves.isEmpty {
+            taggedMoves = Moves
+        }
         return taggedMoves
     }
     
@@ -179,6 +185,7 @@ class SetupViewController: UIViewController {
             if let TagView = NavView.children.first! as? EditTagsViewController {
                 TagView.TagsArray = CurrentWorkout.WorkoutTagsReference
                 TagView.AddButton.isHidden = true
+                TagView.setupParent = self
             }
             if let WorkoutView = NavView.children.first! as? WorkoutViewController {
                 CurrentWorkout.TimeDiff = (Int)(StopTimePicker.date.timeIntervalSince(Date()))

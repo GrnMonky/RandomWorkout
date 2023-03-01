@@ -153,6 +153,12 @@ class EditTagsViewController: UITableViewController {
                 CurrentTags.append(cell.textLabel!.text!)
             }
         }
-        self.dismiss(animated: true, completion: {})
+
+        
+        self.dismiss(animated: true, completion: { [weak self] in
+            self?.setupParent?.setRandomMove()
+        })
     }
+    
+    weak var setupParent : SetupViewController? = nil
 }

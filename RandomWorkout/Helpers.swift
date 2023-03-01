@@ -39,6 +39,8 @@ class Helpers {
     
     class func PlaySound(_ url:NSURL){
         
+        guard Settings.playSound else { return }
+        
         let audioPlayer = try? AVAudioPlayer(contentsOf: url as URL)
         audioPlayer!.prepareToPlay()
         

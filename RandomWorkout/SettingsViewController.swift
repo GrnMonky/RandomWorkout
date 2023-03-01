@@ -14,9 +14,12 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var PrepTimeDisplay: UILabel!
     @IBOutlet weak var PrepTimeStepper: UIStepper!
     
+    @IBOutlet weak var PlaySoundSwitch: UISwitch!
+    
     override func viewDidLoad() {
         PrepTimeStepper.value = Double(CurrentSettings.PrepTime)
         PrepTimeDisplay.text = String(CurrentSettings.PrepTime)
+        PlaySoundSwitch.setOn(Settings.playSound, animated: false)
     }
     
     @IBAction func PrepTimeStepperChanged(_ sender: UIStepper) {
@@ -24,4 +27,9 @@ class SettingsViewController: UIViewController {
         CurrentSettings.PrepTime = Int(PrepTimeStepper.value)
         PrepTimeDisplay.text = String(CurrentSettings.PrepTime)
     }
+    
+    @IBAction func PlaySoundChanged(_ sender: UISwitch) {
+        Settings.playSound = sender.isOn
+    }
+    
 }

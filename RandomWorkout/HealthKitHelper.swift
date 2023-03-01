@@ -14,10 +14,10 @@ let HealthKitHelper = HealthKitManager()
 class HealthKitManager{
     
     let healthKitStore:HKHealthStore = HKHealthStore()
-    var healthKitAvailable = true;
+    var healthKitAvailable = HKHealthStore.isHealthDataAvailable();
     
     init(){
-        authorizeHealthKit()
+        if healthKitAvailable { authorizeHealthKit() }
     }
     
     func Setup(){
@@ -46,11 +46,11 @@ class HealthKitManager{
         
         var workout: HKWorkout? = nil
         
-        if #available(iOS 9.0, *) {
+//        if #available(iOS 9.0, *) {
             workout = HKWorkout(activityType: .other, start: start as Date, end: end as Date, duration: interval, totalEnergyBurned: nil, totalDistance: nil, device: nil, metadata: nil)
-        } else {
-            workout = HKWorkout(activityType: .other, start: start as Date, end: end as Date)
-        }
+//        } else {
+//            workout = HKWorkout(activityType: .other, start: start as Date, end: end as Date)
+//        }
         
         // Save the workout before adding detailed samples.
         healthKitStore.save(workout!) { (success, error) -> Void in

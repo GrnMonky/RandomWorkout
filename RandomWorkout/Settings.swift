@@ -28,6 +28,16 @@ class Settings: NSObject, NSCoding {
         static let prepTimeKey = "prepTime"
     }
     
+   static var playSound : Bool {
+        get {
+            UserDefaults.standard.register(defaults: ["playSound": true])
+            return UserDefaults.standard.bool(forKey: "playSound")
+        }
+        set(newValue) {
+            UserDefaults.standard.set(newValue, forKey: "playSound")
+        }
+    }
+    
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("Settings")
     

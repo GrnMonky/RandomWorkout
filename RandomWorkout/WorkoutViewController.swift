@@ -50,7 +50,7 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var MoveWeightStepper: UIStepper!
     
     @IBOutlet weak var NeutralBtn: UIButton!
-
+    
     required init?(coder aDecoder: NSCoder){
         //fatalError("init(coder:) has not been implemented")
         audioPlayer = try! AVAudioPlayer(contentsOf: beepSound as URL)
@@ -122,7 +122,9 @@ class WorkoutViewController: UIViewController {
         
         if(self.State == WorkoutState.Preping){
             if( beep > Int(MoveTime) ){
-            audioPlayer.play()
+                if Settings.playSound {
+                    audioPlayer.play()
+                }
                 beep -= 1
             }
         }
@@ -130,7 +132,9 @@ class WorkoutViewController: UIViewController {
         if(Int(MoveTime) <= Int(CurrentMove.Time/2 + 1) && State == WorkoutState.InMove && halfway == false)
         {
             halfway = true
-            buttonPlayer.play()
+            if Settings.playSound {
+                buttonPlayer.play()
+            }
             Speak(string: "Switch")
         }
         if(MoveTime <= 0){
@@ -154,12 +158,12 @@ class WorkoutViewController: UIViewController {
     }
     
     /*func beep(){
-
-        if(self.State == WorkoutState.Preping && MoveTime > 0.5){
-            //Helpers.PlaySound(beepSound!)
-            audioPlayer.play()
-        }
-    }*/
+     
+     if(self.State == WorkoutState.Preping && MoveTime > 0.5){
+     //Helpers.PlaySound(beepSound!)
+     audioPlayer.play()
+     }
+     }*/
     
     var FiveMinutes = 0
     func sayTime(){
@@ -220,6 +224,7 @@ class WorkoutViewController: UIViewController {
     
     func SpeakMove(MoveToSpeak:Move)
     {
+        guard Settings.playSound else { return }
         myUtterance = AVSpeechUtterance(string: MoveToSpeak.Name)
         myUtterance.rate = 0.5
         synth.speak(myUtterance)
@@ -227,6 +232,7 @@ class WorkoutViewController: UIViewController {
     
     func Speak(string:String)
     {
+        guard Settings.playSound else { return }
         myUtterance = AVSpeechUtterance(string: string)
         myUtterance.rate = 0.5
         synth.speak(myUtterance)
@@ -236,7 +242,7 @@ class WorkoutViewController: UIViewController {
         CurrentMove.Time = Int(MoveTimeStepper.value)
         SetMoveTimeLbl.text = CurrentMove.Time.description
     }
-
+    
     @IBAction func WeightTimeChanged(_ sender: AnyObject) {
         CurrentMove.Weight = Int(MoveWeightStepper.value)
         MoveWeightLbl.text = CurrentMove.Weight.description
@@ -248,19 +254,19 @@ class WorkoutViewController: UIViewController {
     }
     
     /*func DisableAllBtns(){
-        self.HarderBtn?.enabled = false
-        self.NeutralBtn?.enabled = false
-        self.EasierBtn?.enabled = false
-    }
+     self.HarderBtn?.enabled = false
+     self.NeutralBtn?.enabled = false
+     self.EasierBtn?.enabled = false
+     }
+     
+     func EnableAllBtns(){
+     self.HarderBtn?.enabled = true
+     self.NeutralBtn?.enabled = true
+     self.EasierBtn?.enabled = true
+     }*/
     
-    func EnableAllBtns(){
-        self.HarderBtn?.enabled = true
-        self.NeutralBtn?.enabled = true
-        self.EasierBtn?.enabled = true
-    }*/
     
     
-
     
     private func ChooseNextMove() -> Move? {
         //let timeLeft = EndTime - NSDate(CurrentMove.Time)
@@ -268,7 +274,7 @@ class WorkoutViewController: UIViewController {
         var movesDoable = [Move]()
         
         if !(LocalMoves.contains(where: {!$0.Removed})){
-                return nil
+            return nil
         } else if LocalMoves.count == 1 {
             
             movesDoable.append(LocalMoves[0])
@@ -293,13 +299,13 @@ class WorkoutViewController: UIViewController {
             move = movesDoable.sample()
             
             /*if movesDoable.count > 1 {
-            do {
-                move = movesDoable.sample()
-            } while previousMoves.filter({$0 === move}).count > 0
-            }
-            else{
-                move = movesDoable[0]
-            }*/
+             do {
+             move = movesDoable.sample()
+             } while previousMoves.filter({$0 === move}).count > 0
+             }
+             else{
+             move = movesDoable[0]
+             }*/
             
             previousMoves.append(move!)
             
@@ -313,8 +319,8 @@ class WorkoutViewController: UIViewController {
             previousMoves = [Move]()
             return ChooseNextMove()
             /*var cooldown = Move(name:"CoolDown")
-            cooldown.Time = 45//timeLeft
-            return cooldown*/
+             cooldown.Time = 45//timeLeft
+             return cooldown*/
         }
     }
 }
