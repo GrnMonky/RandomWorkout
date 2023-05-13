@@ -113,8 +113,9 @@ class WorkoutViewController: UIViewController {
     }
     
     @objc func update(){
-        let diff = -start.timeIntervalSinceNow
-        start = NSDate()
+//        let diff = -start.timeIntervalSinceNow
+//        start = NSDate()
+        let diff = TotalTimer.timeInterval
         TotalTimeLbl.text = "Total: \(Helpers.ConvertFloatToTime(TotalTime))"
         TotalTime =  TotalTime + diff
         MoveTimeLbl.text = Helpers.ConvertFloatToTime(MoveTime)
@@ -266,6 +267,13 @@ class WorkoutViewController: UIViewController {
      }*/
     
     
+    @IBAction func PausePlay(_ sender: Any) {
+        if TotalTimer.isValid {
+            TotalTimer.invalidate()
+        } else {
+            self.TotalTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(WorkoutViewController.update), userInfo: nil, repeats: true)
+        }
+    }
     
     
     private func ChooseNextMove() -> Move? {

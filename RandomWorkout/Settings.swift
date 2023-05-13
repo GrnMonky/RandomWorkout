@@ -17,7 +17,7 @@ func GenerateSettings(){
     if let savedSettings = loadSettings() {
         CurrentSettings = savedSettings
     } else {
-        
+        return
     }
 }
 
@@ -28,7 +28,7 @@ class Settings: NSObject, NSCoding {
         static let prepTimeKey = "prepTime"
     }
     
-   static var playSound : Bool {
+    static var playSound : Bool {
         get {
             UserDefaults.standard.register(defaults: ["playSound": true])
             return UserDefaults.standard.bool(forKey: "playSound")
@@ -46,7 +46,7 @@ class Settings: NSObject, NSCoding {
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
-
+        
         // Must call designated initializer.
         self.init()
         
@@ -56,10 +56,8 @@ class Settings: NSObject, NSCoding {
 
 func saveSettings() {
     do {
-        if let nsData = NSData(contentsOf: Settings.ArchiveURL) {
-    let data = try? NSKeyedArchiver.archivedData(withRootObject: nsData, requiringSecureCoding: true)
-            try data?.write(to: Settings.ArchiveURL)
-        }
+        let data = try NSKeyedArchiver.archivedData(withRootObject: CurrentSettings, requiringSecureCoding: false)
+        try data.write(to: Settings.ArchiveURL)
     }
     catch {
         print("Failed to save settings...", terminator: "")
@@ -68,19 +66,19 @@ func saveSettings() {
 
 func loadSettings() -> Settings? {
     if let nsData = NSData(contentsOf: Settings.ArchiveURL) {
-            do {
-
-                let data = Data(referencing:nsData)
-
-                if let settings = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Settings {
-                    return settings
-                }
-            } catch {
-                print("Couldn't read file.")
-                return nil
+        do {
+            
+            let data = Data(referencing:nsData)
+            
+            if let settings = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Settings {
+                return settings
             }
+        } catch {
+            print("Couldn't read file.")
+            return nil
         }
-        return nil
+    }
+    return nil
 }
 
 

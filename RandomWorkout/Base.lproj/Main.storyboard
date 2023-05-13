@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -209,13 +210,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TotalTime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laT-ve-uBa">
-                                <rect key="frame" x="20" y="74" width="74.5" height="21"/>
+                                <rect key="frame" x="20" y="94" width="74.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gDZ-Md-eRb">
-                                <rect key="frame" x="16" y="127" width="343" height="332"/>
+                                <rect key="frame" x="16" y="147" width="343" height="312"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TimeDisplay" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Si0-YX-VZB">
                                 <rect key="frame" x="141" y="506" width="93" height="21"/>
@@ -263,13 +264,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="275-iL-nul">
-                                <rect key="frame" x="288" y="74" width="71" height="21"/>
+                                <rect key="frame" x="288" y="94" width="71" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Move" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLa-b9-fcv">
-                                <rect key="frame" x="146.5" y="98" width="82" height="21"/>
+                                <rect key="frame" x="146.5" y="118" width="82" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -309,11 +310,21 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Mfw-3R-11a">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="d1x-Fb-hOB">
                             <connections>
                                 <action selector="DoneAction:" destination="GK2-Ts-gsX" id="c3w-1B-lD0"/>
                             </connections>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="4ZY-rS-igF">
+                            <rect key="frame" x="134" y="5" width="107" height="34.5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Pause/Play"/>
+                            <connections>
+                                <action selector="PausePlay:" destination="GK2-Ts-gsX" eventType="touchUpInside" id="hg3-dZ-ayp"/>
+                            </connections>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" title="Skip" id="pXU-AV-8b9">
                             <connections>
                                 <action selector="Skip:" destination="GK2-Ts-gsX" id="Ix8-hn-iYS"/>
@@ -342,7 +353,7 @@
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="MovesViewController" customModule="RandomWorkout" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CS4-of-DpP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -594,7 +605,7 @@
                     <tabBarItem key="tabBarItem" title="Moves" image="second" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="00j-E1-iJ8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -619,7 +630,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="3xT-TF-UMz">
-                                <rect key="frame" x="4" y="30" width="367" height="637"/>
+                                <rect key="frame" x="4" y="50" width="367" height="617"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="firstBaseline" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="Prx-rm-K90">
                                         <rect key="frame" x="0.0" y="0.0" width="367" height="20.5"/>
@@ -645,7 +656,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="firstBaseline" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="hMp-lh-K10">
-                                        <rect key="frame" x="0.0" y="61.5" width="367" height="31"/>
+                                        <rect key="frame" x="0.0" y="61.5" width="367" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play Sound:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOO-9x-UWT">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="20.5"/>
@@ -654,7 +665,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F7q-nX-bmi">
-                                                <rect key="frame" x="318" y="0.0" width="51" height="31"/>
+                                                <rect key="frame" x="318" y="0.0" width="51" height="20.5"/>
                                                 <connections>
                                                     <action selector="PlaySoundChanged:" destination="abQ-zF-ufF" eventType="valueChanged" id="EyO-aj-Km4"/>
                                                 </connections>
@@ -662,7 +673,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJ4-ho-YnS">
-                                        <rect key="frame" x="0.0" y="133.5" width="367" height="503.5"/>
+                                        <rect key="frame" x="0.0" y="123" width="367" height="494"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -694,7 +705,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="6UO-gf-Klb"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GhC-rN-GNi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

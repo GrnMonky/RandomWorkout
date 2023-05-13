@@ -17,6 +17,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var PlaySoundSwitch: UISwitch!
     
     override func viewDidLoad() {
+        GenerateSettings()
         PrepTimeStepper.value = Double(CurrentSettings.PrepTime)
         PrepTimeDisplay.text = String(CurrentSettings.PrepTime)
         PlaySoundSwitch.setOn(Settings.playSound, animated: false)
@@ -26,10 +27,10 @@ class SettingsViewController: UIViewController {
         
         CurrentSettings.PrepTime = Int(PrepTimeStepper.value)
         PrepTimeDisplay.text = String(CurrentSettings.PrepTime)
+        saveSettings()
     }
     
     @IBAction func PlaySoundChanged(_ sender: UISwitch) {
         Settings.playSound = sender.isOn
     }
-    
 }

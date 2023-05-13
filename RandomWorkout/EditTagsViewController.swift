@@ -108,7 +108,9 @@ class EditTagsViewController: UITableViewController {
         myAlertController.addAction(nextAction)
         
         //Present the AlertController
-        self.present(myAlertController, animated: true, completion: nil)
+        self.present(myAlertController, animated: true, completion: {
+            self.tableView.reloadData()
+        })
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -153,7 +155,6 @@ class EditTagsViewController: UITableViewController {
                 CurrentTags.append(cell.textLabel!.text!)
             }
         }
-
         
         self.dismiss(animated: true, completion: { [weak self] in
             self?.setupParent?.setRandomMove()
