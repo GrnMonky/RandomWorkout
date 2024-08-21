@@ -53,8 +53,8 @@ class Helpers {
     }
     
     class func fetchFirstImage(query: String, completion: @escaping (UIImage?) -> Void) {
-        let apiKey = ProcessInfo.processInfo.environment["Google_API_Key"]!
-        let searchEngineId = ProcessInfo.processInfo.environment["Search_Engine_ID"]!
+        let apiKey = Bundle.main.object(forInfoDictionaryKey: "Api Key") as! String
+        let searchEngineId = Bundle.main.object(forInfoDictionaryKey: "Search Engine") as! String
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
         let urlString = "https://www.googleapis.com/customsearch/v1?q=\(encodedQuery)&cx=\(searchEngineId)&key=\(apiKey)&searchType=image&num=1"

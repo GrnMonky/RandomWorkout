@@ -86,6 +86,8 @@
 		4AC9E9D11C35B8BA00D7EEC2 /* RandomWorkout.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RandomWorkout.entitlements; sourceTree = "<group>"; };
 		4AC9E9D41C35BAE700D7EEC2 /* HealthKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitHelper.swift; sourceTree = "<group>"; };
 		4AC9E9D61C37210600D7EEC2 /* EditTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTagsViewController.swift; sourceTree = "<group>"; };
+		EB44CE982C7616D7000CD8F5 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		EB44CE992C761B95000CD8F5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		EB8FC61B1F77B5A3006E9FBC /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -163,6 +165,7 @@
 		4ABE67AF1A520A16000024ED = {
 			isa = PBXGroup;
 			children = (
+				EB44CE992C761B95000CD8F5 /* .gitignore */,
 				4AABB7CB1A68B84A00D60A35 /* AVFoundation.framework */,
 				4ABE67BA1A520A16000024ED /* RandomWorkout */,
 				4ABE67D21A520A16000024ED /* RandomWorkoutTests */,
@@ -195,6 +198,7 @@
 				4ABE67C61A520A16000024ED /* Images.xcassets */,
 				4ABE67C81A520A16000024ED /* LaunchScreen.xib */,
 				4ABE67BB1A520A16000024ED /* Supporting Files */,
+				EB44CE982C7616D7000CD8F5 /* Config.xcconfig */,
 			);
 			path = RandomWorkout;
 			sourceTree = "<group>";
@@ -525,6 +529,7 @@
 		};
 		4ABE67D71A520A16000024ED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB44CE982C7616D7000CD8F5 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -583,6 +588,7 @@
 		};
 		4ABE67D81A520A16000024ED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB44CE982C7616D7000CD8F5 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -635,6 +641,7 @@
 		};
 		4ABE67DA1A520A16000024ED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB44CE982C7616D7000CD8F5 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RandomWorkout/RandomWorkout.entitlements;
@@ -657,6 +664,7 @@
 		};
 		4ABE67DB1A520A16000024ED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB44CE982C7616D7000CD8F5 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RandomWorkout/RandomWorkout.entitlements;
