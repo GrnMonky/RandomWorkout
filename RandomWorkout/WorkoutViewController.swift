@@ -74,6 +74,7 @@ class WorkoutViewController: UIViewController {
         //self.FiveMinuteTimer = NSTimer.scheduledTimerWithTimeInterval(60 * 5, target: self, selector: Selector("sayTime"), userInfo: nil, repeats: true)
         
         let dummyMove = Move(name: "Warm Up")
+        dummyMove.Media = UIImage()
         dummyMove.Time = 0
         dummyMove.Weight = 0
         CurrentMove = dummyMove
@@ -101,7 +102,11 @@ class WorkoutViewController: UIViewController {
             MoveTimeStepper.value = Double(_currentMove.Time)
             SetMoveTimeLbl.text = _currentMove.Time.description
             MoveWeightLbl.text = _currentMove.Weight.description
-            ImageView.image = _currentMove.Media
+            _currentMove.getMedia() { [weak self] image in
+                DispatchQueue.main.async {
+                    self?.ImageView.image = image
+                }
+            }
         }
     }
     
@@ -172,7 +177,7 @@ class WorkoutViewController: UIViewController {
         Speak(string: "\(FiveMinutes) minutes")
     }
     
-    func UpdateState(){
+    func UpdateState() {
         switch(State){
         case .InMove:
             //Go to preping
@@ -184,7 +189,11 @@ class WorkoutViewController: UIViewController {
             beep = CurrentSettings.PrepTime > 5 ? 5 : CurrentSettings.PrepTime
             NextMoveLbl.text = "Up next: \(NextMove!.Name)"
             SpeakMove(MoveToSpeak: NextMove!)
-            ImageView.image = NextMove?.Media
+            NextMove?.getMedia() { [weak self] image in
+                DispatchQueue.main.async {
+                    self?.ImageView.image = image
+                }
+            }
             State = WorkoutState.Preping
             break
         case .Preping:
@@ -203,8 +212,7 @@ class WorkoutViewController: UIViewController {
         }
     }
     
-    @IBAction func Skip(_ sender: AnyObject)
-    {
+    @IBAction func Skip(_ sender: AnyObject) {
         UpdateState()
     }
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+import RandomWorkout
 
 class RandomWorkoutTests: XCTestCase {
     
@@ -21,9 +22,12 @@ class RandomWorkoutTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testExample() async {
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        
+        Helpers.fetchFirstImage(query: "Push-ups") {image in
+            XCTAssertNotNil(image)
+        }
     }
     
     func testPerformanceExample() {

@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import UIKit
 
 class Helpers {
     
@@ -49,6 +50,49 @@ class Helpers {
         //var mySound = NSSound(named:"Morse.aiff")
         //mySound.play()
     
+    }
+    
+    class func fetchFirstImage(query: String, completion: @escaping (UIImage?) -> Void) {
+        let apiKey = ProcessInfo.processInfo.environment["Google_API_Key"]!
+        let searchEngineId = ProcessInfo.processInfo.environment["Search_Engine_ID"]!
+        let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        
+        let urlString = "https://www.googleapis.com/customsearch/v1?q=\(encodedQuery)&cx=\(searchEngineId)&key=\(apiKey)&searchType=image&num=1"
+        
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else {
+                completion(nil)
+                return
+            }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let items = json["items"] as? [[String: Any]],
+                   let firstItem = items.first,
+                   let imageLink = firstItem["link"] as? String,
+                   let imageUrl = URL(string: imageLink) {
+                    
+                    // Download the image data
+                    let imageData = try Data(contentsOf: imageUrl)
+                    
+                    // Convert the data to a UIImage
+                    let image = UIImage(data: imageData)
+                    
+                    completion(image)
+                } else {
+                    completion(nil)
+                }
+            } catch {
+                completion(nil)
+            }
+        }
+        
+        task.resume()
     }
     
 }
@@ -103,6 +147,43 @@ extension Double {
 class ArrayWrapper<Type> {
     var array: [Type] = [Type]()
 }
+
+//func fetchFirstImageURL(query: String, completion: @escaping (String?) -> Void) {
+//    let apiKey = "AIzaSyBdgpDA1_ePiQFbi-UfwIk5RA-Y2iTxvoY"
+////    let searchEngineId = "YOUR_SEARCH_ENGINE_ID"
+//    let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+//    
+////    let urlString = "https://www.googleapis.com/customsearch/v1?q=\(encodedQuery)&cx=\(searchEngineId)&key=\(apiKey)&searchType=image&num=1"
+//    
+//    let urlString = "https://www.googleapis.com/customsearch/v1?q=\(encodedQuery)&key=\(apiKey)&searchType=image&num=1"
+//    
+//    guard let url = URL(string: urlString) else {
+//        completion(nil)
+//        return
+//    }
+//    
+//    let task = URLSession.shared.dataTask(with: url) { data, response, error in
+//        guard let data = data, error == nil else {
+//            completion(nil)
+//            return
+//        }
+//        
+//        do {
+//            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+//               let items = json["items"] as? [[String: Any]],
+//               let firstItem = items.first,
+//               let imageLink = firstItem["link"] as? String {
+//                completion(imageLink)
+//            } else {
+//                completion(nil)
+//            }
+//        } catch {
+//            completion(nil)
+//        }
+//    }
+//    
+//    task.resume()
+//}
 
 
 

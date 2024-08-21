@@ -16,7 +16,7 @@ class SetupViewController: UIViewController {
         }
     }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Update()
@@ -38,6 +38,9 @@ class SetupViewController: UIViewController {
         AllMovesSwitch.isOn = CurrentWorkout.MoveTagsOn
         SelectTagsBtn.isEnabled = CurrentWorkout.MoveTagsOn
         
+        //Uncomment To reset moves
+//        ResetMoves()
+        
         GenerateMoves()
         GenerateTags()
         GenerateSettings()
@@ -51,7 +54,7 @@ class SetupViewController: UIViewController {
         //saveMoves()
         //setRandomMove()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,8 +67,13 @@ class SetupViewController: UIViewController {
         } else {
             RandomMove = taggedMoves.randomElement() ?? Move()
         }
-        RandomMoveImage.image = RandomMove.Media
+        RandomMove.getMedia() { [weak self] image in
+            DispatchQueue.main.async {
+                self?.RandomMoveImage.image = image
+            }
+        }
         RandomMoveButton.setTitle(RandomMove.Name, for: .normal)
+        
     }
     
     var UpdateTimer = Timer()
@@ -88,7 +96,7 @@ class SetupViewController: UIViewController {
         if(diff > 0 || currentTime > 1){
             StopTimePicker.date = StopTimePicker.date.addingTimeInterval(diff * 60)
             let min = NSCalendar.current.component(.minute, from: StopTimePicker.date)
-        stepperValue = min
+            stepperValue = min
         }
         sender.value = Double(stepperValue)
     }
@@ -165,7 +173,7 @@ class SetupViewController: UIViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "Workout" {
             getTaggedMoves()
-
+            
             if taggedMoves.count < 1 {
                 return false;
             }
