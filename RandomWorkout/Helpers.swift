@@ -148,43 +148,6 @@ class ArrayWrapper<Type> {
     var array: [Type] = [Type]()
 }
 
-//func fetchFirstImageURL(query: String, completion: @escaping (String?) -> Void) {
-//    let apiKey = "AIzaSyBdgpDA1_ePiQFbi-UfwIk5RA-Y2iTxvoY"
-////    let searchEngineId = "YOUR_SEARCH_ENGINE_ID"
-//    let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-//    
-////    let urlString = "https://www.googleapis.com/customsearch/v1?q=\(encodedQuery)&cx=\(searchEngineId)&key=\(apiKey)&searchType=image&num=1"
-//    
-//    let urlString = "https://www.googleapis.com/customsearch/v1?q=\(encodedQuery)&key=\(apiKey)&searchType=image&num=1"
-//    
-//    guard let url = URL(string: urlString) else {
-//        completion(nil)
-//        return
-//    }
-//    
-//    let task = URLSession.shared.dataTask(with: url) { data, response, error in
-//        guard let data = data, error == nil else {
-//            completion(nil)
-//            return
-//        }
-//        
-//        do {
-//            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-//               let items = json["items"] as? [[String: Any]],
-//               let firstItem = items.first,
-//               let imageLink = firstItem["link"] as? String {
-//                completion(imageLink)
-//            } else {
-//                completion(nil)
-//            }
-//        } catch {
-//            completion(nil)
-//        }
-//    }
-//    
-//    task.resume()
-//}
-
 
 
 
